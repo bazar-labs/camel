@@ -1,0 +1,21 @@
+name: Sync API spec to Readme.com
+
+on:
+  push:
+    branches:
+      - master
+      - feat/open-api-setup
+
+jobs:
+  sync:
+    name: Sync API spec to Readme.com
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Sync API Spec to Readme.com
+        uses: readmeio/rdme@7.4.0
+        with:
+          rdme: openapi spec.yml --key=${{ secrets.README_API_KEY }} --id=64c2b858c4ebe90067c356fb

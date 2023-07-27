@@ -1,0 +1,57 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: El Goblino API
+
+tags:
+  - name: Games
+
+servers:
+  - url: 'https://turron-api.onrender.com/api/v1'
+
+paths:
+  /games:
+    get:
+      tags:
+        - Games
+      summary: List all Games
+      parameters:
+        - $ref: '#/components/parameters/apikey'
+      responses:
+        '200':
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Game'
+                maxItems: 25
+        '500':
+          description: Internal Server Error
+      operationId: ListGames
+      description: |-
+        Returns a list of all games you have access to.
+
+components:
+  parameters:
+    apikey:
+      name: X-API-KEY
+      in: header
+      schema:
+        type: string
+      required: true
+
+  schemas:
+    Game:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        user_id:
+          type: string
+          format: uuid
+        name:
+          type: string
