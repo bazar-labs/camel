@@ -1,11 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
+	"github.com/el-goblino-foundation/turron/api"
 	"github.com/el-goblino-foundation/turron/config"
 	"github.com/el-goblino-foundation/turron/db"
+	"github.com/el-goblino-foundation/turron/service"
+	"github.com/el-goblino-foundation/turron/store"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
@@ -19,8 +21,12 @@ func main() {
 		log.Debug().Interface("config", cfg).Msg("loaded config")
 	}
 
-	db := db.New(&cfg.Database)
-	_ = db
+	var (
+		db      = db.New(&cfg.Database)
+		store   = store.New(db)
+		service = service.New(store)
+		api     = api.New(&cfg.API, service)
+	)
 
-	fmt.Println("hi^^")
+	log.Fatal().Err(api.ListenAndServe()).Msg("server crashed")
 }
