@@ -16,5 +16,6 @@
 
 /.vscode
 /.db_data
+.env.prod
 .env
 !.env.test
