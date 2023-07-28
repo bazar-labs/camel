@@ -20,10 +20,15 @@ type App struct {
 
 type API struct {
 	ServerPort int `env:"API_SERVER_PORT" env-required:"true"`
+	Pinata     Pinata
 }
 
 type Database struct {
 	URL string `env:"DATABASE_URL" env-required:"true"`
+}
+
+type Pinata struct {
+	JWT string `env:"PROVIDERS_PINATA_JWT" env-required:"true"`
 }
 
 func Load(paths ...string) *Config {

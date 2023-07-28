@@ -19,3 +19,4 @@
 .env.prod
 .env
 !.env.test
+png-1mb.png
