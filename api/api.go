@@ -16,6 +16,7 @@ type API struct {
 }
 
 type handler struct {
+	cfg     *config.API
 	service IService
 }
 
@@ -27,7 +28,7 @@ type IService interface {
 
 func New(cfg *config.API, service IService) *API {
 	server := fiber.New()
-	handler := &handler{service}
+	handler := &handler{cfg, service}
 	middleware := &middleware{}
 
 	server.Use(middleware.Logger())
@@ -35,6 +36,7 @@ func New(cfg *config.API, service IService) *API {
 
 	v1 := server.Group("/api/v1")
 	v1.Get("/games", handler.ListGames)
+	v1.Post("/upload", handler.Upload)
 
 	return &API{cfg, server}
 }
