@@ -1,4 +1,4 @@
-package transact
+package blockchain
 
 import (
 	"crypto/ecdsa"

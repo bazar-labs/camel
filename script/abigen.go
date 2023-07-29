@@ -2,67 +2,75 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"log"
 	"os"
 	"os/exec"
 )
 
-// Define the structure of JSON data
+const OutDir = "contract"
+const TempDir = "temp"
+
+var Names = []string{"Counter", "BoringFactory"}
+
 type contract struct {
 	ABI []interface{} `json:"abi"`
 }
 
-const outDir = "contract"
-const artifactDir = "artifacts"
+func main() {
+	remove := dir(TempDir)
+	defer remove()
 
-func abigen(name string, abi []interface{}) {
-	abiData, err := json.Marshal(abi)
-	if err != nil {
-		panic(err)
-	}
+	for _, name := range Names {
+		file, err := os.ReadFile("../protocol/out/" + name + ".sol/" + name + ".json")
+		if err != nil {
+			log.Fatalf("failed to read file: %v", err)
+		}
 
-	err = os.WriteFile(artifactDir+"/"+name+"_abi.json", abiData, 0644)
-	if err != nil {
-		panic(err)
-	}
+		var contract contract
+		err = json.Unmarshal(file, &contract)
+		if err != nil {
+			log.Fatalf("failed to unmarshal json: %v", err)
+		}
 
-	err = exec.
-		Command("abigen", "--abi="+artifactDir+"/"+name+"_abi.json", "--pkg=contract", "--out="+outDir+"/"+name+".go", "--type="+name+"Contract").
-		Run()
-
-	if err != nil {
-		panic(err)
+		err = abigen(name, contract.ABI)
+		if err != nil {
+			log.Fatalf("failed to abigen: %v", err)
+		}
 	}
 }
 
-func tempDir(dir string) func() {
-	err := os.Mkdir(artifactDir, 0755)
+func abigen(name string, abi []interface{}) error {
+	data, err := json.Marshal(abi)
 	if err != nil {
-		panic(err)
+		return fmt.Errorf("failed to marshal json: %v", err)
+	}
+
+	err = os.WriteFile(TempDir+"/"+name+"_abi.json", data, 0644)
+	if err != nil {
+		return fmt.Errorf("failed to write file: %v", err)
+	}
+
+	args := []string{"--abi=" + TempDir + "/" + name + "_abi.json", "--pkg=contract", "--out=" + OutDir + "/" + name + ".go", "--type=" + name + "Contract"}
+
+	err = exec.Command("abigen", args...).Run()
+	if err != nil {
+		return fmt.Errorf("failed to run abigen command: %v", err)
+	}
+
+	return nil
+}
+
+func dir(dir string) func() {
+	err := os.Mkdir(dir, 0755)
+	if err != nil {
+		log.Fatalf("failed to create dir: %v", err)
 	}
 
 	return func() {
-		if _, err := os.Stat(dir); !os.IsNotExist(err) {
-			err := os.RemoveAll(dir)
-			if err != nil {
-				panic(err)
-			}
-		}
-	}
-}
-
-func main() {
-	names := []string{"Counter"}
-
-	cleanup := tempDir(artifactDir)
-	defer cleanup()
-
-	for _, name := range names {
-		file, err := os.ReadFile("../protocol/out/" + name + ".sol/" + name + ".json")
+		err := os.RemoveAll(dir)
 		if err != nil {
-			panic(err)
+			log.Fatalf("failed to remove dir: %v", err)
 		}
-		var contract contract
-		json.Unmarshal(file, &contract)
-		abigen(name, contract.ABI)
 	}
 }
