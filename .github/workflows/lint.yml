@@ -14,4 +14,4 @@ jobs:
       - name: Validate and Lint
         uses: stoplightio/spectral-action@latest
         with:
-          file_glob: "docs/spec.yml"
+          file_glob: "./docs/spec.yml"
