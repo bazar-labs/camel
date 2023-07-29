@@ -9,9 +9,10 @@ import (
 )
 
 type Config struct {
-	App      App
-	API      API
-	Database Database
+	App        App
+	API        API
+	Database   Database
+	Blockchain Blockchain
 }
 
 type App struct {
@@ -29,6 +30,16 @@ type Pinata struct {
 
 type Database struct {
 	URL string `env:"DATABASE_URL" env-required:"true"`
+}
+
+type Blockchain struct {
+	URL               string `env:"BLOCKCHAIN_URL" env-required:"true"`
+	PrivateKey        string `env:"BLOCKCHAIN_PRIVATE_KEY" env-required:"true"`
+	ContractAddresses ContractAddresses
+}
+
+type ContractAddresses struct {
+	Counter string `env:"BLOCKCHAIN_CONTRACT_ADDRESSES_COUNTER" env-required:"true"`
 }
 
 func Load(paths ...string) *Config {
