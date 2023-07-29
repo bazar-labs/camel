@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/el-goblino-foundation/turron/domain"
+	"github.com/el-goblino-foundation/turron/internal/domain"
 	"github.com/google/uuid"
 )
 

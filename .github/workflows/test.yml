@@ -27,7 +27,7 @@ jobs:
 
       - name: Build check
         run: |
-          go build main.go
+          go build cmd/server/main.go
     
       - name: Run tests
         run: |

@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/el-goblino-foundation/turron/config"
-	"github.com/el-goblino-foundation/turron/domain"
+	"github.com/el-goblino-foundation/turron/internal/config"
+	"github.com/el-goblino-foundation/turron/internal/domain"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 )

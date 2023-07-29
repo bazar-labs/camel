@@ -3,7 +3,7 @@ package db
 import (
 	"database/sql"
 
-	"github.com/el-goblino-foundation/turron/config"
+	"github.com/el-goblino-foundation/turron/internal/config"
 	_ "github.com/lib/pq"
 	"github.com/rs/zerolog/log"
 )

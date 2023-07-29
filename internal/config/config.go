@@ -23,12 +23,12 @@ type API struct {
 	Pinata     Pinata
 }
 
-type Database struct {
-	URL string `env:"DATABASE_URL" env-required:"true"`
+type Pinata struct {
+	JWT string `env:"API_PINATA_JWT" env-required:"true"`
 }
 
-type Pinata struct {
-	JWT string `env:"PROVIDERS_PINATA_JWT" env-required:"true"`
+type Database struct {
+	URL string `env:"DATABASE_URL" env-required:"true"`
 }
 
 func Load(paths ...string) *Config {

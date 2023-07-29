@@ -3,11 +3,11 @@ package main
 import (
 	"os"
 
-	"github.com/el-goblino-foundation/turron/api"
-	"github.com/el-goblino-foundation/turron/config"
-	"github.com/el-goblino-foundation/turron/db"
-	"github.com/el-goblino-foundation/turron/service"
-	"github.com/el-goblino-foundation/turron/store"
+	"github.com/el-goblino-foundation/turron/internal/api"
+	"github.com/el-goblino-foundation/turron/internal/config"
+	"github.com/el-goblino-foundation/turron/internal/db"
+	"github.com/el-goblino-foundation/turron/internal/service"
+	"github.com/el-goblino-foundation/turron/internal/store"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
