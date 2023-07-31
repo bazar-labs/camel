@@ -54,7 +54,12 @@ func abigen(name string, abi []interface{}) error {
 		return fmt.Errorf("failed to write file: %v", err)
 	}
 
-	args := []string{"--abi=" + TEMP_DIR + "/" + name + "_abi.json", "--pkg=contract", "--out=" + OUT_DIR + "/" + name + ".go", "--type=" + name + "Contract"}
+	args := []string{
+		"--pkg=contract",
+		"--type=" + name + "Contract",
+		"--abi=" + TEMP_DIR + "/" + name + "_abi.json",
+		"--out=" + OUT_DIR + "/" + name + ".go",
+	}
 
 	err = exec.Command("abigen", args...).Run()
 	if err != nil {
