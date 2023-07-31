@@ -19,6 +19,7 @@ CREATE TABLE public.games (
   id uuid DEFAULT public.uuid_generate_v4() PRIMARY KEY,
   user_id uuid NOT NULL,
   name text,
+  contract_addresses jsonb,
   created_at timestamptz DEFAULT NOW() NOT NULL,
   updated_at timestamptz DEFAULT NOW() NOT NULL
 );
