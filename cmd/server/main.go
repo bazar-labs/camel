@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/el-goblino-foundation/turron/internal/api"
+	"github.com/el-goblino-foundation/turron/internal/blockchain"
 	"github.com/el-goblino-foundation/turron/internal/config"
 	"github.com/el-goblino-foundation/turron/internal/db"
 	"github.com/el-goblino-foundation/turron/internal/service"
@@ -22,10 +23,11 @@ func main() {
 	}
 
 	var (
-		db      = db.New(&cfg.Database)
-		store   = store.New(db)
-		service = service.New(store)
-		api     = api.New(&cfg.API, service)
+		db         = db.New(&cfg.Database)
+		store      = store.New(db)
+		blockchain = blockchain.New(&cfg.Blockchain)
+		service    = service.New(store, blockchain)
+		api        = api.New(&cfg.API, service)
 	)
 
 	log.Fatal().Err(api.ListenAndServe()).Msg("server crashed")
