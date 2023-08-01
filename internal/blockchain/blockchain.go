@@ -10,8 +10,9 @@ import (
 )
 
 type Client struct {
-	client *ethclient.Client
-	pk     *ecdsa.PrivateKey
+	client                  *ethclient.Client
+	pk                      *ecdsa.PrivateKey
+	masterContractAddresses *config.MasterContractAddresses
 }
 
 func New(cfg *config.Blockchain) *Client {
@@ -25,5 +26,5 @@ func New(cfg *config.Blockchain) *Client {
 		log.Fatal().Msgf("failed to parse private key: %v", err)
 	}
 
-	return &Client{client, pk}
+	return &Client{client, pk, &cfg.MasterContractAddresses}
 }

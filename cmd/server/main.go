@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/el-goblino-foundation/turron/internal/api"
@@ -29,6 +30,10 @@ func main() {
 		service    = service.New(store, blockchain)
 		api        = api.New(&cfg.API, service)
 	)
+	_ = api
 
-	log.Fatal().Err(api.ListenAndServe()).Msg("server crashed")
+	addresses, err := blockchain.Economy().Deploy()
+	fmt.Printf("addresses %#v\n", addresses)
+	fmt.Printf("err %#v\n", err)
+
 }

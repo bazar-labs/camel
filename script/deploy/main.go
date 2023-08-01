@@ -18,14 +18,13 @@ type DeployArg struct {
 	Path            string
 	Name            string
 	ConstructorArgs []string
-	DeployTo        common.Address
 }
 
 var DEPLOY_ARGS = []DeployArg{
 	{
 		Path:            "lib/BoringSolidity/contracts/BoringFactory.sol",
 		Name:            "BoringFactory",
-		ConstructorArgs: []string{ANVIL_PUBLIC_KEY},
+		ConstructorArgs: []string{},
 	},
 	{
 		Path:            "src/InventoryRegistry.sol",
@@ -35,10 +34,7 @@ var DEPLOY_ARGS = []DeployArg{
 }
 
 func main() {
-	// cfg := config.Load()
-	// db := db.New(&cfg.Database)
-
-	for i, arg := range DEPLOY_ARGS {
+	for _, arg := range DEPLOY_ARGS {
 		contract := strings.Join([]string{arg.Path, arg.Name}, ":")
 
 		command := exec.Command("forge", "create",
@@ -61,8 +57,6 @@ func main() {
 			log.Fatalf("Failed to parse deployed to address for %s: %s", contract, string(output))
 		}
 
-		DEPLOY_ARGS[i].DeployTo = common.HexToAddress(matches[1])
+		fmt.Printf("%s: %#v\n", arg.Name, common.HexToAddress(matches[1]))
 	}
-
-	fmt.Printf("Deployed contracts: %v \n", DEPLOY_ARGS)
 }

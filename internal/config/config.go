@@ -3,6 +3,7 @@ package config
 import (
 	"strings"
 
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/joho/godotenv"
 	"github.com/rs/zerolog/log"
@@ -33,13 +34,14 @@ type Database struct {
 }
 
 type Blockchain struct {
-	URL               string `env:"BLOCKCHAIN_URL" env-required:"true"`
-	PrivateKey        string `env:"BLOCKCHAIN_PRIVATE_KEY" env-required:"true"`
-	ContractAddresses ContractAddresses
+	URL                     string `env:"BLOCKCHAIN_URL" env-required:"true"`
+	PrivateKey              string `env:"BLOCKCHAIN_PRIVATE_KEY" env-required:"true"`
+	MasterContractAddresses MasterContractAddresses
 }
 
-type ContractAddresses struct {
-	Counter string `env:"BLOCKCHAIN_CONTRACT_ADDRESSES_COUNTER" env-required:"true"`
+type MasterContractAddresses struct {
+	BoringFactory     common.Address `env:"BLOCKCHAIN_MASTER_CONTRACT_ADDRESSES_BORING_FACTORY" env-required:"true"`
+	InventoryRegistry common.Address `env:"BLOCKCHAIN_MASTER_CONTRACT_ADDRESSES_INVENTORY_REGISTRY" env-required:"true"`
 }
 
 func Load(paths ...string) *Config {

@@ -1,59 +1,93 @@
 package blockchain
 
 import (
+	"context"
 	"crypto/ecdsa"
 	"fmt"
+	"math/big"
 	"strings"
 
 	"github.com/el-goblino-foundation/turron/contract"
+	"github.com/el-goblino-foundation/turron/internal/config"
 	"github.com/el-goblino-foundation/turron/internal/domain"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
+
+const CHAIN_ID = 31337
 
 type IEconomy interface {
 	Deploy() (domain.GameContractAddresses, error)
 }
 
 type Economy struct {
-	client *ethclient.Client
-	pk     *ecdsa.PrivateKey
+	client                  *ethclient.Client
+	pk                      *ecdsa.PrivateKey
+	masterContractAddresses *config.MasterContractAddresses
 }
 
 func (c *Client) Economy() IEconomy {
-	return &Economy{c.client, c.pk}
+	return &Economy{c.client, c.pk, c.masterContractAddresses}
 }
 
-// FIXME
-var MasterBoringFactoryContractAddress = common.HexToAddress("0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512")
-var MasterInventoryRegistryContractAddress = common.HexToAddress("0x5FbDB2315678afecb367f032d93F642f64180aa3")
-var OwnerAddress = common.HexToAddress("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266")
-
-// func (c *Economy) Deploy(contracts strings...) (domain.GameContractAddresses, error) {
 func (c *Economy) Deploy() (domain.GameContractAddresses, error) {
-	instance, err := contract.NewBoringFactoryContract(MasterBoringFactoryContractAddress, c.client)
+	instance, err := contract.NewBoringFactoryContract(c.masterContractAddresses.BoringFactory, c.client)
 	if err != nil {
 		return domain.GameContractAddresses{}, fmt.Errorf("failed to instantiate a 'BoringFactory' contract: %w", err)
 	}
 
-	// loop over contracts
+	// fit owner into 32 bytes
+	owner := crypto.PubkeyToAddress(c.pk.PublicKey).Bytes()
+	data := make([]byte, 32)
+	copy(data[32-len(owner):], owner)
 
-	abi, err := abi.JSON(strings.NewReader(contract.InventoryRegistryContractABI))
+	auth, err := getAuthenticatedTransactor(c.client, c.pk)
 	if err != nil {
-		return domain.GameContractAddresses{}, fmt.Errorf("failed to create ABI: %w", err)
+		return domain.GameContractAddresses{}, fmt.Errorf("failed to get authenticated transactor: %w", err)
 	}
 
-	data, err := abi.Pack("init", OwnerAddress)
+	tx, err := instance.Deploy(auth, c.masterContractAddresses.InventoryRegistry, data, false)
 	if err != nil {
-		return domain.GameContractAddresses{}, fmt.Errorf("failed to pack data: %w", err)
+		return domain.GameContractAddresses{}, fmt.Errorf("failed to deploy 'InventoryRegistry' contract: %w", err)
 	}
 
-	_, err = instance.Deploy(&bind.TransactOpts{}, MasterInventoryRegistryContractAddress, data, false)
+	_, err = bind.WaitMined(context.Background(), c.client, tx)
 	if err != nil {
-		return domain.GameContractAddresses{}, fmt.Errorf("failed to deploy with 'BoringFactory' contract: %w", err)
+		return domain.GameContractAddresses{}, fmt.Errorf("failed to wait for contract deployment transaction to be mined: %w", err)
 	}
 
-	return domain.GameContractAddresses{}, nil
+	receipt, err := c.client.TransactionReceipt(context.Background(), tx.Hash())
+	if err != nil {
+		return domain.GameContractAddresses{}, fmt.Errorf("failed to get transaction receipt: %w", err)
+	}
+
+	parsedABI, err := abi.JSON(strings.NewReader(contract.BoringFactoryContractABI))
+	if err != nil {
+		return domain.GameContractAddresses{}, fmt.Errorf("failed to parse contract ABI: %w", err)
+	}
+
+	gca := domain.GameContractAddresses{}
+	eventSignature := parsedABI.Events["LogDeploy"].ID
+
+	for _, log := range receipt.Logs {
+		if log.Topics[0] == eventSignature {
+			gca.InventoryRegistry = common.BytesToAddress(log.Topics[2].Bytes())
+		}
+	}
+
+	return gca, nil
+}
+
+func getAuthenticatedTransactor(client *ethclient.Client, pk *ecdsa.PrivateKey) (*bind.TransactOpts, error) {
+	auth, err := bind.NewKeyedTransactorWithChainID(pk, big.NewInt(CHAIN_ID))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create authorized transactor: %v", err)
+	}
+
+	auth.GasLimit = uint64(30000000)
+
+	return auth, nil
 }
