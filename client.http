@@ -1,5 +1,6 @@
 GET http://localhost:3000/health
 
+@game_id = 3918ba29-75dd-40e9-aa5a-35d83ee75d40
 
 ###
 GET http://localhost:3000/api/v1/games
@@ -7,7 +8,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/api/v1/games/3918ba29-75dd-40e9-aa5a-35d83ee75d40
+GET http://localhost:3000/api/v1/games/{{game_id}}
 Content-Type: application/json
 
 
@@ -17,7 +18,7 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:3000/api/v1/games/3918ba29-75dd-40e9-aa5a-35d83ee75d40/economy
+POST http://localhost:3000/api/v1/games/{{game_id}}/economy
 Content-Type: application/json
 
 

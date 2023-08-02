@@ -4,3 +4,4 @@
 - think about sync vs async writes to protocol
 - think about error boundraries for txs
 - think about gas limit for txs
+- remove TODOs/FIXMEs
