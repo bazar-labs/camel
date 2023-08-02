@@ -35,12 +35,14 @@ func (s *Store) ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game,
 	games := make([]domain.Game, 0)
 	for rows.Next() {
 		var g domain.Game
-		var contractAddresses json.RawMessage
+		var contractAddresses sql.NullString
 		if err := rows.Scan(&g.ID, &g.Name, &contractAddresses); err != nil {
 			return nil, fmt.Errorf("error scanning row: %w", err)
 		}
-		if err := json.Unmarshal(contractAddresses, &g.ContractAddresses); err != nil {
-			return nil, fmt.Errorf("error unmarshalling contract addresses: %w", err)
+		if contractAddresses.Valid {
+			if err := json.Unmarshal([]byte(contractAddresses.String), &g.ContractAddresses); err != nil {
+				return nil, fmt.Errorf("error unmarshalling contract addresses: %w", err)
+			}
 		}
 		games = append(games, g)
 	}
@@ -56,12 +58,14 @@ func (s *Store) GetGame(ctx context.Context, userID, gameID uuid.UUID) (*domain.
 	`
 
 	var g domain.Game
-	var contractAddresses json.RawMessage
+	var contractAddresses sql.NullString
 	if err := s.db.QueryRowContext(ctx, query, gameID, userID).Scan(&g.ID, &g.Name, &contractAddresses); err != nil {
 		return nil, fmt.Errorf("error querying game: %w", err)
 	}
-	if err := json.Unmarshal(contractAddresses, &g.ContractAddresses); err != nil {
-		return nil, fmt.Errorf("error unmarshalling contract addresses: %w", err)
+	if contractAddresses.Valid {
+		if err := json.Unmarshal([]byte(contractAddresses.String), &g.ContractAddresses); err != nil {
+			return nil, fmt.Errorf("error unmarshalling contract addresses: %w", err)
+		}
 	}
 
 	return &g, nil

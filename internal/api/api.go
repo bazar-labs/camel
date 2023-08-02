@@ -44,7 +44,7 @@ func New(cfg *config.API, service IService) *API {
 	v1.Get("/games", handler.ListGames)
 	v1.Get("/games/:id", handler.GetGame)
 	v1.Post("/games", handler.CreateGame)
-	v1.Post("/games/economy", handler.DeployGameEconomy)
+	v1.Post("/games/:id/economy", handler.DeployGameEconomy)
 
 	return &API{cfg, server}
 }

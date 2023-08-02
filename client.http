@@ -7,8 +7,19 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/api/v1/games
+GET http://localhost:3000/api/v1/games/3918ba29-75dd-40e9-aa5a-35d83ee75d40
 Content-Type: application/json
+
+
+###
+POST http://localhost:3000/api/v1/games
+Content-Type: application/json
+
+
+###
+POST http://localhost:3000/api/v1/games/3918ba29-75dd-40e9-aa5a-35d83ee75d40/economy
+Content-Type: application/json
+
 
 
 ###
