@@ -23,7 +23,13 @@ type handler struct {
 type middleware struct{}
 
 type IService interface {
+	// Game
 	ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game, error)
+	GetGame(ctx context.Context, userID uuid.UUID, gameID uuid.UUID) (*domain.Game, error)
+	CreateGame(ctx context.Context, userID uuid.UUID, name string) (*domain.Game, error)
+
+	// Game Economy
+	DeployGameEconomy(ctx context.Context, gameID uuid.UUID) (domain.GameContractAddresses, error)
 }
 
 func New(cfg *config.API, service IService) *API {
@@ -36,7 +42,9 @@ func New(cfg *config.API, service IService) *API {
 
 	v1 := server.Group("/api/v1")
 	v1.Get("/games", handler.ListGames)
-	v1.Post("/upload", handler.Upload)
+	v1.Get("/games/:id", handler.GetGame)
+	v1.Post("/games", handler.CreateGame)
+	v1.Post("/games/economy", handler.DeployGameEconomy)
 
 	return &API{cfg, server}
 }

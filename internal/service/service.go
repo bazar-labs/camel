@@ -15,8 +15,12 @@ type Service struct {
 }
 
 type IStore interface {
+	// Game
 	ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game, error)
-	CreateGame(ctx context.Context, userID uuid.UUID, name string) (uuid.UUID, error)
+	GetGame(ctx context.Context, userID uuid.UUID, gameID uuid.UUID) (*domain.Game, error)
+	CreateGame(ctx context.Context, userID uuid.UUID, name string) (*domain.Game, error)
+
+	// Game Contract Addresses
 	GetGameContractAddresses(ctx context.Context, gameID uuid.UUID) (*domain.GameContractAddresses, error)
 	UpdateGameContractAddresses(ctx context.Context, gameID uuid.UUID, addresses domain.GameContractAddresses) error
 }
