@@ -25,7 +25,7 @@ func main() {
 	cleandir(OUT_DIR)
 
 	for _, name := range NAMES {
-		file, err := os.ReadFile("../protocol/out/" + name + ".sol/" + name + ".json")
+		file, err := os.ReadFile("./protocol/out/" + name + ".sol/" + name + ".json")
 		if err != nil {
 			log.Fatalf("failed to read file: %v", err)
 		}

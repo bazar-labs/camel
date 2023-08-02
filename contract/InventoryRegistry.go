@@ -31,7 +31,7 @@ var (
 
 // InventoryRegistryContractMetaData contains all meta data concerning the InventoryRegistryContract contract.
 var InventoryRegistryContractMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"ERC1155Base__ArrayLengthMismatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__BalanceQueryZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__BurnExceedsBalance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__BurnFromZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__ERC1155ReceiverNotImplemented\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__ERC1155ReceiverRejected\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__MintToZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__NotOwnerOrApproved\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__SelfApproval\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__TransferExceedsBalance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__TransferToZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC165Base__InvalidInterfaceId\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"EnumerableSet__IndexOutOfBounds\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"definitionID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"definitionURI\",\"type\":\"string\"}],\"name\":\"ItemDefinitionCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"definitionID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"oldDefinitionURI\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"newDefinitionURI\",\"type\":\"string\"}],\"name\":\"ItemDefinitionUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"}],\"name\":\"TransferBatch\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"TransferSingle\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"URI\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"accountsByToken\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"}],\"name\":\"balanceOfBatch\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"player\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenID_\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"burnFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"definitionURI\",\"type\":\"string\"}],\"name\":\"createItemDefinition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"definitionIDToTokenIDs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"definitionIDToURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"init\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"itemDefinitionID\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isFungible\",\"type\":\"bool\"}],\"name\":\"mintTo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"mintedTokenID\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeBatchTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"tokensByAccount\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"totalHolders\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"definitionID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"newDefinitionURI\",\"type\":\"string\"}],\"name\":\"updateItemDefinition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"uri\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AlreadyInitialized\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__ArrayLengthMismatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__BalanceQueryZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__BurnExceedsBalance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__BurnFromZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__ERC1155ReceiverNotImplemented\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__ERC1155ReceiverRejected\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__MintToZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__NotOwnerOrApproved\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__SelfApproval\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__TransferExceedsBalance\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC1155Base__TransferToZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ERC165Base__InvalidInterfaceId\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"EnumerableSet__IndexOutOfBounds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotInitializing\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"approved\",\"type\":\"bool\"}],\"name\":\"ApprovalForAll\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"itemDefID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"itemDefURI\",\"type\":\"string\"}],\"name\":\"ItemDefinitionCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"itemDefID\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"oldItemDefURI\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"string\",\"name\":\"newItemDefURI\",\"type\":\"string\"}],\"name\":\"ItemDefinitionUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"indexed\":false,\"internalType\":\"uint256[]\",\"name\":\"values\",\"type\":\"uint256[]\"}],\"name\":\"TransferBatch\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"}],\"name\":\"TransferSingle\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"URI\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"accountsByToken\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"accounts\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"}],\"name\":\"balanceOfBatch\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"player\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenID\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"burnFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"counter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"itemDefURI\",\"type\":\"string\"}],\"name\":\"createItemDefinition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"increment\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"init\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"}],\"name\":\"isApprovedForAll\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"itemDefIDToTokenIDs\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"itemDefIDToURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"itemDefID\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isFungible\",\"type\":\"bool\"}],\"name\":\"mintTo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"mintedTokenID\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256[]\",\"name\":\"ids\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeBatchTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"safeTransferFrom\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"status\",\"type\":\"bool\"}],\"name\":\"setApprovalForAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"interfaceId\",\"type\":\"bytes4\"}],\"name\":\"supportsInterface\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"tokensByAccount\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"totalHolders\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"}],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"itemDefID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"newItemDefURI\",\"type\":\"string\"}],\"name\":\"updateItemDefinition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"uri\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // InventoryRegistryContractABI is the input ABI used to generate the binding from.
@@ -273,12 +273,12 @@ func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) Balanc
 	return _InventoryRegistryContract.Contract.BalanceOfBatch(&_InventoryRegistryContract.CallOpts, accounts, ids)
 }
 
-// DefinitionIDToTokenIDs is a free data retrieval call binding the contract method 0x90925007.
+// Counter is a free data retrieval call binding the contract method 0x61bc221a.
 //
-// Solidity: function definitionIDToTokenIDs(uint256 , uint256 ) view returns(uint256)
-func (_InventoryRegistryContract *InventoryRegistryContractCaller) DefinitionIDToTokenIDs(opts *bind.CallOpts, arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
+// Solidity: function counter() view returns(uint256)
+func (_InventoryRegistryContract *InventoryRegistryContractCaller) Counter(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _InventoryRegistryContract.contract.Call(opts, &out, "definitionIDToTokenIDs", arg0, arg1)
+	err := _InventoryRegistryContract.contract.Call(opts, &out, "counter")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -290,49 +290,18 @@ func (_InventoryRegistryContract *InventoryRegistryContractCaller) DefinitionIDT
 
 }
 
-// DefinitionIDToTokenIDs is a free data retrieval call binding the contract method 0x90925007.
+// Counter is a free data retrieval call binding the contract method 0x61bc221a.
 //
-// Solidity: function definitionIDToTokenIDs(uint256 , uint256 ) view returns(uint256)
-func (_InventoryRegistryContract *InventoryRegistryContractSession) DefinitionIDToTokenIDs(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
-	return _InventoryRegistryContract.Contract.DefinitionIDToTokenIDs(&_InventoryRegistryContract.CallOpts, arg0, arg1)
+// Solidity: function counter() view returns(uint256)
+func (_InventoryRegistryContract *InventoryRegistryContractSession) Counter() (*big.Int, error) {
+	return _InventoryRegistryContract.Contract.Counter(&_InventoryRegistryContract.CallOpts)
 }
 
-// DefinitionIDToTokenIDs is a free data retrieval call binding the contract method 0x90925007.
+// Counter is a free data retrieval call binding the contract method 0x61bc221a.
 //
-// Solidity: function definitionIDToTokenIDs(uint256 , uint256 ) view returns(uint256)
-func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) DefinitionIDToTokenIDs(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
-	return _InventoryRegistryContract.Contract.DefinitionIDToTokenIDs(&_InventoryRegistryContract.CallOpts, arg0, arg1)
-}
-
-// DefinitionIDToURI is a free data retrieval call binding the contract method 0x4012bfcb.
-//
-// Solidity: function definitionIDToURI(uint256 ) view returns(string)
-func (_InventoryRegistryContract *InventoryRegistryContractCaller) DefinitionIDToURI(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
-	var out []interface{}
-	err := _InventoryRegistryContract.contract.Call(opts, &out, "definitionIDToURI", arg0)
-
-	if err != nil {
-		return *new(string), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(string)).(*string)
-
-	return out0, err
-
-}
-
-// DefinitionIDToURI is a free data retrieval call binding the contract method 0x4012bfcb.
-//
-// Solidity: function definitionIDToURI(uint256 ) view returns(string)
-func (_InventoryRegistryContract *InventoryRegistryContractSession) DefinitionIDToURI(arg0 *big.Int) (string, error) {
-	return _InventoryRegistryContract.Contract.DefinitionIDToURI(&_InventoryRegistryContract.CallOpts, arg0)
-}
-
-// DefinitionIDToURI is a free data retrieval call binding the contract method 0x4012bfcb.
-//
-// Solidity: function definitionIDToURI(uint256 ) view returns(string)
-func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) DefinitionIDToURI(arg0 *big.Int) (string, error) {
-	return _InventoryRegistryContract.Contract.DefinitionIDToURI(&_InventoryRegistryContract.CallOpts, arg0)
+// Solidity: function counter() view returns(uint256)
+func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) Counter() (*big.Int, error) {
+	return _InventoryRegistryContract.Contract.Counter(&_InventoryRegistryContract.CallOpts)
 }
 
 // IsApprovedForAll is a free data retrieval call binding the contract method 0xe985e9c5.
@@ -364,6 +333,68 @@ func (_InventoryRegistryContract *InventoryRegistryContractSession) IsApprovedFo
 // Solidity: function isApprovedForAll(address account, address operator) view returns(bool)
 func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) IsApprovedForAll(account common.Address, operator common.Address) (bool, error) {
 	return _InventoryRegistryContract.Contract.IsApprovedForAll(&_InventoryRegistryContract.CallOpts, account, operator)
+}
+
+// ItemDefIDToTokenIDs is a free data retrieval call binding the contract method 0xe5bcbe31.
+//
+// Solidity: function itemDefIDToTokenIDs(uint256 , uint256 ) view returns(uint256)
+func (_InventoryRegistryContract *InventoryRegistryContractCaller) ItemDefIDToTokenIDs(opts *bind.CallOpts, arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
+	var out []interface{}
+	err := _InventoryRegistryContract.contract.Call(opts, &out, "itemDefIDToTokenIDs", arg0, arg1)
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// ItemDefIDToTokenIDs is a free data retrieval call binding the contract method 0xe5bcbe31.
+//
+// Solidity: function itemDefIDToTokenIDs(uint256 , uint256 ) view returns(uint256)
+func (_InventoryRegistryContract *InventoryRegistryContractSession) ItemDefIDToTokenIDs(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
+	return _InventoryRegistryContract.Contract.ItemDefIDToTokenIDs(&_InventoryRegistryContract.CallOpts, arg0, arg1)
+}
+
+// ItemDefIDToTokenIDs is a free data retrieval call binding the contract method 0xe5bcbe31.
+//
+// Solidity: function itemDefIDToTokenIDs(uint256 , uint256 ) view returns(uint256)
+func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) ItemDefIDToTokenIDs(arg0 *big.Int, arg1 *big.Int) (*big.Int, error) {
+	return _InventoryRegistryContract.Contract.ItemDefIDToTokenIDs(&_InventoryRegistryContract.CallOpts, arg0, arg1)
+}
+
+// ItemDefIDToURI is a free data retrieval call binding the contract method 0x344e9c19.
+//
+// Solidity: function itemDefIDToURI(uint256 ) view returns(string)
+func (_InventoryRegistryContract *InventoryRegistryContractCaller) ItemDefIDToURI(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
+	var out []interface{}
+	err := _InventoryRegistryContract.contract.Call(opts, &out, "itemDefIDToURI", arg0)
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
+}
+
+// ItemDefIDToURI is a free data retrieval call binding the contract method 0x344e9c19.
+//
+// Solidity: function itemDefIDToURI(uint256 ) view returns(string)
+func (_InventoryRegistryContract *InventoryRegistryContractSession) ItemDefIDToURI(arg0 *big.Int) (string, error) {
+	return _InventoryRegistryContract.Contract.ItemDefIDToURI(&_InventoryRegistryContract.CallOpts, arg0)
+}
+
+// ItemDefIDToURI is a free data retrieval call binding the contract method 0x344e9c19.
+//
+// Solidity: function itemDefIDToURI(uint256 ) view returns(string)
+func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) ItemDefIDToURI(arg0 *big.Int) (string, error) {
+	return _InventoryRegistryContract.Contract.ItemDefIDToURI(&_InventoryRegistryContract.CallOpts, arg0)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -554,44 +585,65 @@ func (_InventoryRegistryContract *InventoryRegistryContractCallerSession) Uri(to
 
 // BurnFrom is a paid mutator transaction binding the contract method 0x124d91e5.
 //
-// Solidity: function burnFrom(address player, uint256 tokenID_, uint256 amount) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractTransactor) BurnFrom(opts *bind.TransactOpts, player common.Address, tokenID_ *big.Int, amount *big.Int) (*types.Transaction, error) {
-	return _InventoryRegistryContract.contract.Transact(opts, "burnFrom", player, tokenID_, amount)
+// Solidity: function burnFrom(address player, uint256 tokenID, uint256 amount) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactor) BurnFrom(opts *bind.TransactOpts, player common.Address, tokenID *big.Int, amount *big.Int) (*types.Transaction, error) {
+	return _InventoryRegistryContract.contract.Transact(opts, "burnFrom", player, tokenID, amount)
 }
 
 // BurnFrom is a paid mutator transaction binding the contract method 0x124d91e5.
 //
-// Solidity: function burnFrom(address player, uint256 tokenID_, uint256 amount) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractSession) BurnFrom(player common.Address, tokenID_ *big.Int, amount *big.Int) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.BurnFrom(&_InventoryRegistryContract.TransactOpts, player, tokenID_, amount)
+// Solidity: function burnFrom(address player, uint256 tokenID, uint256 amount) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractSession) BurnFrom(player common.Address, tokenID *big.Int, amount *big.Int) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.BurnFrom(&_InventoryRegistryContract.TransactOpts, player, tokenID, amount)
 }
 
 // BurnFrom is a paid mutator transaction binding the contract method 0x124d91e5.
 //
-// Solidity: function burnFrom(address player, uint256 tokenID_, uint256 amount) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) BurnFrom(player common.Address, tokenID_ *big.Int, amount *big.Int) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.BurnFrom(&_InventoryRegistryContract.TransactOpts, player, tokenID_, amount)
+// Solidity: function burnFrom(address player, uint256 tokenID, uint256 amount) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) BurnFrom(player common.Address, tokenID *big.Int, amount *big.Int) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.BurnFrom(&_InventoryRegistryContract.TransactOpts, player, tokenID, amount)
 }
 
 // CreateItemDefinition is a paid mutator transaction binding the contract method 0x1a4c83b9.
 //
-// Solidity: function createItemDefinition(string definitionURI) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractTransactor) CreateItemDefinition(opts *bind.TransactOpts, definitionURI string) (*types.Transaction, error) {
-	return _InventoryRegistryContract.contract.Transact(opts, "createItemDefinition", definitionURI)
+// Solidity: function createItemDefinition(string itemDefURI) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactor) CreateItemDefinition(opts *bind.TransactOpts, itemDefURI string) (*types.Transaction, error) {
+	return _InventoryRegistryContract.contract.Transact(opts, "createItemDefinition", itemDefURI)
 }
 
 // CreateItemDefinition is a paid mutator transaction binding the contract method 0x1a4c83b9.
 //
-// Solidity: function createItemDefinition(string definitionURI) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractSession) CreateItemDefinition(definitionURI string) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.CreateItemDefinition(&_InventoryRegistryContract.TransactOpts, definitionURI)
+// Solidity: function createItemDefinition(string itemDefURI) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractSession) CreateItemDefinition(itemDefURI string) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.CreateItemDefinition(&_InventoryRegistryContract.TransactOpts, itemDefURI)
 }
 
 // CreateItemDefinition is a paid mutator transaction binding the contract method 0x1a4c83b9.
 //
-// Solidity: function createItemDefinition(string definitionURI) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) CreateItemDefinition(definitionURI string) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.CreateItemDefinition(&_InventoryRegistryContract.TransactOpts, definitionURI)
+// Solidity: function createItemDefinition(string itemDefURI) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) CreateItemDefinition(itemDefURI string) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.CreateItemDefinition(&_InventoryRegistryContract.TransactOpts, itemDefURI)
+}
+
+// Increment is a paid mutator transaction binding the contract method 0xcb0de25a.
+//
+// Solidity: function increment(bytes data) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactor) Increment(opts *bind.TransactOpts, data []byte) (*types.Transaction, error) {
+	return _InventoryRegistryContract.contract.Transact(opts, "increment", data)
+}
+
+// Increment is a paid mutator transaction binding the contract method 0xcb0de25a.
+//
+// Solidity: function increment(bytes data) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractSession) Increment(data []byte) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.Increment(&_InventoryRegistryContract.TransactOpts, data)
+}
+
+// Increment is a paid mutator transaction binding the contract method 0xcb0de25a.
+//
+// Solidity: function increment(bytes data) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) Increment(data []byte) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.Increment(&_InventoryRegistryContract.TransactOpts, data)
 }
 
 // Init is a paid mutator transaction binding the contract method 0x4ddf47d4.
@@ -617,23 +669,23 @@ func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) In
 
 // MintTo is a paid mutator transaction binding the contract method 0x3186e594.
 //
-// Solidity: function mintTo(address to, uint256 amount, uint256 itemDefinitionID, bool isFungible) returns(uint256 mintedTokenID)
-func (_InventoryRegistryContract *InventoryRegistryContractTransactor) MintTo(opts *bind.TransactOpts, to common.Address, amount *big.Int, itemDefinitionID *big.Int, isFungible bool) (*types.Transaction, error) {
-	return _InventoryRegistryContract.contract.Transact(opts, "mintTo", to, amount, itemDefinitionID, isFungible)
+// Solidity: function mintTo(address to, uint256 amount, uint256 itemDefID, bool isFungible) returns(uint256 mintedTokenID)
+func (_InventoryRegistryContract *InventoryRegistryContractTransactor) MintTo(opts *bind.TransactOpts, to common.Address, amount *big.Int, itemDefID *big.Int, isFungible bool) (*types.Transaction, error) {
+	return _InventoryRegistryContract.contract.Transact(opts, "mintTo", to, amount, itemDefID, isFungible)
 }
 
 // MintTo is a paid mutator transaction binding the contract method 0x3186e594.
 //
-// Solidity: function mintTo(address to, uint256 amount, uint256 itemDefinitionID, bool isFungible) returns(uint256 mintedTokenID)
-func (_InventoryRegistryContract *InventoryRegistryContractSession) MintTo(to common.Address, amount *big.Int, itemDefinitionID *big.Int, isFungible bool) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.MintTo(&_InventoryRegistryContract.TransactOpts, to, amount, itemDefinitionID, isFungible)
+// Solidity: function mintTo(address to, uint256 amount, uint256 itemDefID, bool isFungible) returns(uint256 mintedTokenID)
+func (_InventoryRegistryContract *InventoryRegistryContractSession) MintTo(to common.Address, amount *big.Int, itemDefID *big.Int, isFungible bool) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.MintTo(&_InventoryRegistryContract.TransactOpts, to, amount, itemDefID, isFungible)
 }
 
 // MintTo is a paid mutator transaction binding the contract method 0x3186e594.
 //
-// Solidity: function mintTo(address to, uint256 amount, uint256 itemDefinitionID, bool isFungible) returns(uint256 mintedTokenID)
-func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) MintTo(to common.Address, amount *big.Int, itemDefinitionID *big.Int, isFungible bool) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.MintTo(&_InventoryRegistryContract.TransactOpts, to, amount, itemDefinitionID, isFungible)
+// Solidity: function mintTo(address to, uint256 amount, uint256 itemDefID, bool isFungible) returns(uint256 mintedTokenID)
+func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) MintTo(to common.Address, amount *big.Int, itemDefID *big.Int, isFungible bool) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.MintTo(&_InventoryRegistryContract.TransactOpts, to, amount, itemDefID, isFungible)
 }
 
 // SafeBatchTransferFrom is a paid mutator transaction binding the contract method 0x2eb2c2d6.
@@ -722,23 +774,23 @@ func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) Tr
 
 // UpdateItemDefinition is a paid mutator transaction binding the contract method 0x089697dc.
 //
-// Solidity: function updateItemDefinition(uint256 definitionID, string newDefinitionURI) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractTransactor) UpdateItemDefinition(opts *bind.TransactOpts, definitionID *big.Int, newDefinitionURI string) (*types.Transaction, error) {
-	return _InventoryRegistryContract.contract.Transact(opts, "updateItemDefinition", definitionID, newDefinitionURI)
+// Solidity: function updateItemDefinition(uint256 itemDefID, string newItemDefURI) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactor) UpdateItemDefinition(opts *bind.TransactOpts, itemDefID *big.Int, newItemDefURI string) (*types.Transaction, error) {
+	return _InventoryRegistryContract.contract.Transact(opts, "updateItemDefinition", itemDefID, newItemDefURI)
 }
 
 // UpdateItemDefinition is a paid mutator transaction binding the contract method 0x089697dc.
 //
-// Solidity: function updateItemDefinition(uint256 definitionID, string newDefinitionURI) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractSession) UpdateItemDefinition(definitionID *big.Int, newDefinitionURI string) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.UpdateItemDefinition(&_InventoryRegistryContract.TransactOpts, definitionID, newDefinitionURI)
+// Solidity: function updateItemDefinition(uint256 itemDefID, string newItemDefURI) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractSession) UpdateItemDefinition(itemDefID *big.Int, newItemDefURI string) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.UpdateItemDefinition(&_InventoryRegistryContract.TransactOpts, itemDefID, newItemDefURI)
 }
 
 // UpdateItemDefinition is a paid mutator transaction binding the contract method 0x089697dc.
 //
-// Solidity: function updateItemDefinition(uint256 definitionID, string newDefinitionURI) returns()
-func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) UpdateItemDefinition(definitionID *big.Int, newDefinitionURI string) (*types.Transaction, error) {
-	return _InventoryRegistryContract.Contract.UpdateItemDefinition(&_InventoryRegistryContract.TransactOpts, definitionID, newDefinitionURI)
+// Solidity: function updateItemDefinition(uint256 itemDefID, string newItemDefURI) returns()
+func (_InventoryRegistryContract *InventoryRegistryContractTransactorSession) UpdateItemDefinition(itemDefID *big.Int, newItemDefURI string) (*types.Transaction, error) {
+	return _InventoryRegistryContract.Contract.UpdateItemDefinition(&_InventoryRegistryContract.TransactOpts, itemDefID, newItemDefURI)
 }
 
 // InventoryRegistryContractApprovalForAllIterator is returned from FilterApprovalForAll and is used to iterate over the raw logs and unpacked data for ApprovalForAll events raised by the InventoryRegistryContract contract.
@@ -1098,31 +1150,31 @@ func (it *InventoryRegistryContractItemDefinitionCreatedIterator) Close() error 
 
 // InventoryRegistryContractItemDefinitionCreated represents a ItemDefinitionCreated event raised by the InventoryRegistryContract contract.
 type InventoryRegistryContractItemDefinitionCreated struct {
-	DefinitionID  *big.Int
-	TokenID       *big.Int
-	DefinitionURI common.Hash
-	Raw           types.Log // Blockchain specific contextual infos
+	ItemDefID  *big.Int
+	TokenID    *big.Int
+	ItemDefURI common.Hash
+	Raw        types.Log // Blockchain specific contextual infos
 }
 
 // FilterItemDefinitionCreated is a free log retrieval operation binding the contract event 0x6969e28b30327abd2636898cd868b4103dcd095500ad1105a5f550de57ac044f.
 //
-// Solidity: event ItemDefinitionCreated(uint256 indexed definitionID, uint256 indexed tokenID, string indexed definitionURI)
-func (_InventoryRegistryContract *InventoryRegistryContractFilterer) FilterItemDefinitionCreated(opts *bind.FilterOpts, definitionID []*big.Int, tokenID []*big.Int, definitionURI []string) (*InventoryRegistryContractItemDefinitionCreatedIterator, error) {
+// Solidity: event ItemDefinitionCreated(uint256 indexed itemDefID, uint256 indexed tokenID, string indexed itemDefURI)
+func (_InventoryRegistryContract *InventoryRegistryContractFilterer) FilterItemDefinitionCreated(opts *bind.FilterOpts, itemDefID []*big.Int, tokenID []*big.Int, itemDefURI []string) (*InventoryRegistryContractItemDefinitionCreatedIterator, error) {
 
-	var definitionIDRule []interface{}
-	for _, definitionIDItem := range definitionID {
-		definitionIDRule = append(definitionIDRule, definitionIDItem)
+	var itemDefIDRule []interface{}
+	for _, itemDefIDItem := range itemDefID {
+		itemDefIDRule = append(itemDefIDRule, itemDefIDItem)
 	}
 	var tokenIDRule []interface{}
 	for _, tokenIDItem := range tokenID {
 		tokenIDRule = append(tokenIDRule, tokenIDItem)
 	}
-	var definitionURIRule []interface{}
-	for _, definitionURIItem := range definitionURI {
-		definitionURIRule = append(definitionURIRule, definitionURIItem)
+	var itemDefURIRule []interface{}
+	for _, itemDefURIItem := range itemDefURI {
+		itemDefURIRule = append(itemDefURIRule, itemDefURIItem)
 	}
 
-	logs, sub, err := _InventoryRegistryContract.contract.FilterLogs(opts, "ItemDefinitionCreated", definitionIDRule, tokenIDRule, definitionURIRule)
+	logs, sub, err := _InventoryRegistryContract.contract.FilterLogs(opts, "ItemDefinitionCreated", itemDefIDRule, tokenIDRule, itemDefURIRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1131,23 +1183,23 @@ func (_InventoryRegistryContract *InventoryRegistryContractFilterer) FilterItemD
 
 // WatchItemDefinitionCreated is a free log subscription operation binding the contract event 0x6969e28b30327abd2636898cd868b4103dcd095500ad1105a5f550de57ac044f.
 //
-// Solidity: event ItemDefinitionCreated(uint256 indexed definitionID, uint256 indexed tokenID, string indexed definitionURI)
-func (_InventoryRegistryContract *InventoryRegistryContractFilterer) WatchItemDefinitionCreated(opts *bind.WatchOpts, sink chan<- *InventoryRegistryContractItemDefinitionCreated, definitionID []*big.Int, tokenID []*big.Int, definitionURI []string) (event.Subscription, error) {
+// Solidity: event ItemDefinitionCreated(uint256 indexed itemDefID, uint256 indexed tokenID, string indexed itemDefURI)
+func (_InventoryRegistryContract *InventoryRegistryContractFilterer) WatchItemDefinitionCreated(opts *bind.WatchOpts, sink chan<- *InventoryRegistryContractItemDefinitionCreated, itemDefID []*big.Int, tokenID []*big.Int, itemDefURI []string) (event.Subscription, error) {
 
-	var definitionIDRule []interface{}
-	for _, definitionIDItem := range definitionID {
-		definitionIDRule = append(definitionIDRule, definitionIDItem)
+	var itemDefIDRule []interface{}
+	for _, itemDefIDItem := range itemDefID {
+		itemDefIDRule = append(itemDefIDRule, itemDefIDItem)
 	}
 	var tokenIDRule []interface{}
 	for _, tokenIDItem := range tokenID {
 		tokenIDRule = append(tokenIDRule, tokenIDItem)
 	}
-	var definitionURIRule []interface{}
-	for _, definitionURIItem := range definitionURI {
-		definitionURIRule = append(definitionURIRule, definitionURIItem)
+	var itemDefURIRule []interface{}
+	for _, itemDefURIItem := range itemDefURI {
+		itemDefURIRule = append(itemDefURIRule, itemDefURIItem)
 	}
 
-	logs, sub, err := _InventoryRegistryContract.contract.WatchLogs(opts, "ItemDefinitionCreated", definitionIDRule, tokenIDRule, definitionURIRule)
+	logs, sub, err := _InventoryRegistryContract.contract.WatchLogs(opts, "ItemDefinitionCreated", itemDefIDRule, tokenIDRule, itemDefURIRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1181,7 +1233,7 @@ func (_InventoryRegistryContract *InventoryRegistryContractFilterer) WatchItemDe
 
 // ParseItemDefinitionCreated is a log parse operation binding the contract event 0x6969e28b30327abd2636898cd868b4103dcd095500ad1105a5f550de57ac044f.
 //
-// Solidity: event ItemDefinitionCreated(uint256 indexed definitionID, uint256 indexed tokenID, string indexed definitionURI)
+// Solidity: event ItemDefinitionCreated(uint256 indexed itemDefID, uint256 indexed tokenID, string indexed itemDefURI)
 func (_InventoryRegistryContract *InventoryRegistryContractFilterer) ParseItemDefinitionCreated(log types.Log) (*InventoryRegistryContractItemDefinitionCreated, error) {
 	event := new(InventoryRegistryContractItemDefinitionCreated)
 	if err := _InventoryRegistryContract.contract.UnpackLog(event, "ItemDefinitionCreated", log); err != nil {
@@ -1260,31 +1312,31 @@ func (it *InventoryRegistryContractItemDefinitionUpdatedIterator) Close() error 
 
 // InventoryRegistryContractItemDefinitionUpdated represents a ItemDefinitionUpdated event raised by the InventoryRegistryContract contract.
 type InventoryRegistryContractItemDefinitionUpdated struct {
-	DefinitionID     *big.Int
-	OldDefinitionURI common.Hash
-	NewDefinitionURI common.Hash
-	Raw              types.Log // Blockchain specific contextual infos
+	ItemDefID     *big.Int
+	OldItemDefURI common.Hash
+	NewItemDefURI common.Hash
+	Raw           types.Log // Blockchain specific contextual infos
 }
 
 // FilterItemDefinitionUpdated is a free log retrieval operation binding the contract event 0x5520e0bb2ae763069b66b8c325d3ba77186857ca357e0740eb7eb090177834bc.
 //
-// Solidity: event ItemDefinitionUpdated(uint256 indexed definitionID, string indexed oldDefinitionURI, string indexed newDefinitionURI)
-func (_InventoryRegistryContract *InventoryRegistryContractFilterer) FilterItemDefinitionUpdated(opts *bind.FilterOpts, definitionID []*big.Int, oldDefinitionURI []string, newDefinitionURI []string) (*InventoryRegistryContractItemDefinitionUpdatedIterator, error) {
+// Solidity: event ItemDefinitionUpdated(uint256 indexed itemDefID, string indexed oldItemDefURI, string indexed newItemDefURI)
+func (_InventoryRegistryContract *InventoryRegistryContractFilterer) FilterItemDefinitionUpdated(opts *bind.FilterOpts, itemDefID []*big.Int, oldItemDefURI []string, newItemDefURI []string) (*InventoryRegistryContractItemDefinitionUpdatedIterator, error) {
 
-	var definitionIDRule []interface{}
-	for _, definitionIDItem := range definitionID {
-		definitionIDRule = append(definitionIDRule, definitionIDItem)
+	var itemDefIDRule []interface{}
+	for _, itemDefIDItem := range itemDefID {
+		itemDefIDRule = append(itemDefIDRule, itemDefIDItem)
 	}
-	var oldDefinitionURIRule []interface{}
-	for _, oldDefinitionURIItem := range oldDefinitionURI {
-		oldDefinitionURIRule = append(oldDefinitionURIRule, oldDefinitionURIItem)
+	var oldItemDefURIRule []interface{}
+	for _, oldItemDefURIItem := range oldItemDefURI {
+		oldItemDefURIRule = append(oldItemDefURIRule, oldItemDefURIItem)
 	}
-	var newDefinitionURIRule []interface{}
-	for _, newDefinitionURIItem := range newDefinitionURI {
-		newDefinitionURIRule = append(newDefinitionURIRule, newDefinitionURIItem)
+	var newItemDefURIRule []interface{}
+	for _, newItemDefURIItem := range newItemDefURI {
+		newItemDefURIRule = append(newItemDefURIRule, newItemDefURIItem)
 	}
 
-	logs, sub, err := _InventoryRegistryContract.contract.FilterLogs(opts, "ItemDefinitionUpdated", definitionIDRule, oldDefinitionURIRule, newDefinitionURIRule)
+	logs, sub, err := _InventoryRegistryContract.contract.FilterLogs(opts, "ItemDefinitionUpdated", itemDefIDRule, oldItemDefURIRule, newItemDefURIRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1293,23 +1345,23 @@ func (_InventoryRegistryContract *InventoryRegistryContractFilterer) FilterItemD
 
 // WatchItemDefinitionUpdated is a free log subscription operation binding the contract event 0x5520e0bb2ae763069b66b8c325d3ba77186857ca357e0740eb7eb090177834bc.
 //
-// Solidity: event ItemDefinitionUpdated(uint256 indexed definitionID, string indexed oldDefinitionURI, string indexed newDefinitionURI)
-func (_InventoryRegistryContract *InventoryRegistryContractFilterer) WatchItemDefinitionUpdated(opts *bind.WatchOpts, sink chan<- *InventoryRegistryContractItemDefinitionUpdated, definitionID []*big.Int, oldDefinitionURI []string, newDefinitionURI []string) (event.Subscription, error) {
+// Solidity: event ItemDefinitionUpdated(uint256 indexed itemDefID, string indexed oldItemDefURI, string indexed newItemDefURI)
+func (_InventoryRegistryContract *InventoryRegistryContractFilterer) WatchItemDefinitionUpdated(opts *bind.WatchOpts, sink chan<- *InventoryRegistryContractItemDefinitionUpdated, itemDefID []*big.Int, oldItemDefURI []string, newItemDefURI []string) (event.Subscription, error) {
 
-	var definitionIDRule []interface{}
-	for _, definitionIDItem := range definitionID {
-		definitionIDRule = append(definitionIDRule, definitionIDItem)
+	var itemDefIDRule []interface{}
+	for _, itemDefIDItem := range itemDefID {
+		itemDefIDRule = append(itemDefIDRule, itemDefIDItem)
 	}
-	var oldDefinitionURIRule []interface{}
-	for _, oldDefinitionURIItem := range oldDefinitionURI {
-		oldDefinitionURIRule = append(oldDefinitionURIRule, oldDefinitionURIItem)
+	var oldItemDefURIRule []interface{}
+	for _, oldItemDefURIItem := range oldItemDefURI {
+		oldItemDefURIRule = append(oldItemDefURIRule, oldItemDefURIItem)
 	}
-	var newDefinitionURIRule []interface{}
-	for _, newDefinitionURIItem := range newDefinitionURI {
-		newDefinitionURIRule = append(newDefinitionURIRule, newDefinitionURIItem)
+	var newItemDefURIRule []interface{}
+	for _, newItemDefURIItem := range newItemDefURI {
+		newItemDefURIRule = append(newItemDefURIRule, newItemDefURIItem)
 	}
 
-	logs, sub, err := _InventoryRegistryContract.contract.WatchLogs(opts, "ItemDefinitionUpdated", definitionIDRule, oldDefinitionURIRule, newDefinitionURIRule)
+	logs, sub, err := _InventoryRegistryContract.contract.WatchLogs(opts, "ItemDefinitionUpdated", itemDefIDRule, oldItemDefURIRule, newItemDefURIRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1343,7 +1395,7 @@ func (_InventoryRegistryContract *InventoryRegistryContractFilterer) WatchItemDe
 
 // ParseItemDefinitionUpdated is a log parse operation binding the contract event 0x5520e0bb2ae763069b66b8c325d3ba77186857ca357e0740eb7eb090177834bc.
 //
-// Solidity: event ItemDefinitionUpdated(uint256 indexed definitionID, string indexed oldDefinitionURI, string indexed newDefinitionURI)
+// Solidity: event ItemDefinitionUpdated(uint256 indexed itemDefID, string indexed oldItemDefURI, string indexed newItemDefURI)
 func (_InventoryRegistryContract *InventoryRegistryContractFilterer) ParseItemDefinitionUpdated(log types.Log) (*InventoryRegistryContractItemDefinitionUpdated, error) {
 	event := new(InventoryRegistryContractItemDefinitionUpdated)
 	if err := _InventoryRegistryContract.contract.UnpackLog(event, "ItemDefinitionUpdated", log); err != nil {

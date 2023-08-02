@@ -2,3 +2,5 @@
 - add api endpoints
 - master contract addresses needs to be stored in the db, not as config
 - think about sync vs async writes to protocol
+- think about error boundraries for txs
+- think about gas limit for txs

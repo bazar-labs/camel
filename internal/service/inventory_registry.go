@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/google/uuid"
 )
 
@@ -23,16 +22,16 @@ func (s *Service) GetItemDefinition(ctx context.Context, gameID uuid.UUID, itemD
 	return itemDef, nil
 }
 
-func (s *Service) CreateItemDefinition(ctx context.Context, gameID uuid.UUID, itemDefURI string) (*types.Transaction, error) {
+func (s *Service) CreateItemDefinition(ctx context.Context, gameID uuid.UUID, itemDefURI string) (*big.Int, error) {
 	addresses, err := s.store.GetGameContractAddresses(ctx, gameID)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get game contract addresses: %v", err)
 	}
 
-	tx, err := s.blockchain.InventoryRegistry(addresses.InventoryRegistry).CreateItemDefinition(itemDefURI)
+	itemDefID, err := s.blockchain.InventoryRegistry(addresses.InventoryRegistry).CreateItemDefinition(itemDefURI)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create item definition: %v", err)
 	}
 
-	return tx, nil
+	return itemDefID, nil
 }

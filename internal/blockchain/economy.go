@@ -44,10 +44,11 @@ func (c *Economy) Deploy() (domain.GameContractAddresses, error) {
 	data := make([]byte, 32)
 	copy(data[32-len(owner):], owner)
 
-	auth, err := getAuthenticatedTransactor(c.client, c.pk)
+	auth, err := bind.NewKeyedTransactorWithChainID(c.pk, big.NewInt(CHAIN_ID))
 	if err != nil {
-		return domain.GameContractAddresses{}, fmt.Errorf("failed to get authenticated transactor: %w", err)
+		return domain.GameContractAddresses{}, fmt.Errorf("failed to create authorized transactor: %v", err)
 	}
+	auth.GasLimit = uint64(30000000)
 
 	tx, err := instance.Deploy(auth, c.masterContractAddresses.InventoryRegistry, data, false)
 	if err != nil {
@@ -71,7 +72,6 @@ func (c *Economy) Deploy() (domain.GameContractAddresses, error) {
 
 	gca := domain.GameContractAddresses{}
 	eventSignature := parsedABI.Events["LogDeploy"].ID
-
 	for _, log := range receipt.Logs {
 		if log.Topics[0] == eventSignature {
 			gca.InventoryRegistry = common.BytesToAddress(log.Topics[2].Bytes())
@@ -79,15 +79,4 @@ func (c *Economy) Deploy() (domain.GameContractAddresses, error) {
 	}
 
 	return gca, nil
-}
-
-func getAuthenticatedTransactor(client *ethclient.Client, pk *ecdsa.PrivateKey) (*bind.TransactOpts, error) {
-	auth, err := bind.NewKeyedTransactorWithChainID(pk, big.NewInt(CHAIN_ID))
-	if err != nil {
-		return nil, fmt.Errorf("failed to create authorized transactor: %v", err)
-	}
-
-	auth.GasLimit = uint64(30000000)
-
-	return auth, nil
 }
