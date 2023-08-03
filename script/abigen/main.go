@@ -6,23 +6,26 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 )
 
-const OutDir = "contract"
-const TempDir = "temp"
+const OUT_DIR = "contract"
+const TEMP_DIR = "temp"
 
-var Names = []string{"Counter", "BoringFactory"}
+var NAMES = []string{"InventoryRegistry", "BoringFactory"}
 
 type contract struct {
 	ABI []interface{} `json:"abi"`
 }
 
 func main() {
-	remove := dir(TempDir)
+	remove := makedir(TEMP_DIR)
 	defer remove()
 
-	for _, name := range Names {
-		file, err := os.ReadFile("../protocol/out/" + name + ".sol/" + name + ".json")
+	cleandir(OUT_DIR)
+
+	for _, name := range NAMES {
+		file, err := os.ReadFile("./protocol/out/" + name + ".sol/" + name + ".json")
 		if err != nil {
 			log.Fatalf("failed to read file: %v", err)
 		}
@@ -46,12 +49,17 @@ func abigen(name string, abi []interface{}) error {
 		return fmt.Errorf("failed to marshal json: %v", err)
 	}
 
-	err = os.WriteFile(TempDir+"/"+name+"_abi.json", data, 0644)
+	err = os.WriteFile(TEMP_DIR+"/"+name+"_abi.json", data, 0644)
 	if err != nil {
 		return fmt.Errorf("failed to write file: %v", err)
 	}
 
-	args := []string{"--abi=" + TempDir + "/" + name + "_abi.json", "--pkg=contract", "--out=" + OutDir + "/" + name + ".go", "--type=" + name + "Contract"}
+	args := []string{
+		"--pkg=contract",
+		"--type=" + name + "Contract",
+		"--abi=" + TEMP_DIR + "/" + name + "_abi.json",
+		"--out=" + OUT_DIR + "/" + name + ".go",
+	}
 
 	err = exec.Command("abigen", args...).Run()
 	if err != nil {
@@ -61,7 +69,7 @@ func abigen(name string, abi []interface{}) error {
 	return nil
 }
 
-func dir(dir string) func() {
+func makedir(dir string) func() {
 	err := os.Mkdir(dir, 0755)
 	if err != nil {
 		log.Fatalf("failed to create dir: %v", err)
@@ -73,4 +81,23 @@ func dir(dir string) func() {
 			log.Fatalf("failed to remove dir: %v", err)
 		}
 	}
+}
+
+func cleandir(dir string) error {
+	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if !info.IsDir() {
+			err = os.Remove(path)
+			if err != nil {
+				return err
+			}
+		}
+
+		return nil
+	})
+
+	return err
 }

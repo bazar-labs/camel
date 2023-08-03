@@ -22,7 +22,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./db/migrations:/database
+      - ./internal/db/migrations:/database
     command:
       [
         "-path",
