@@ -13,6 +13,7 @@ type Config struct {
 	App        App
 	API        API
 	Database   Database
+	Service    Service
 	Blockchain Blockchain
 }
 
@@ -22,15 +23,18 @@ type App struct {
 
 type API struct {
 	ServerPort int `env:"API_SERVER_PORT" env-required:"true"`
-	Pinata     Pinata
-}
-
-type Pinata struct {
-	JWT string `env:"API_PINATA_JWT" env-required:"true"`
 }
 
 type Database struct {
 	URL string `env:"DATABASE_URL" env-required:"true"`
+}
+
+type Service struct {
+	Pinata Pinata
+}
+
+type Pinata struct {
+	JWT string `env:"SERVICE_PINATA_JWT" env-required:"true"`
 }
 
 type Blockchain struct {

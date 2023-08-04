@@ -73,6 +73,7 @@ func (c *Economy) Deploy() (domain.GameContractAddresses, error) {
 	gca := domain.GameContractAddresses{}
 	eventSignature := parsedABI.Events["LogDeploy"].ID
 	for _, log := range receipt.Logs {
+		log := log
 		if log.Topics[0] == eventSignature {
 			gca.InventoryRegistry = common.BytesToAddress(log.Topics[2].Bytes())
 		}
