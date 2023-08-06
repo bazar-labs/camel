@@ -25,11 +25,11 @@ func (m *middleware) Logger() fiber.Handler {
 
 		switch {
 		case http.StatusInternalServerError <= code || err != nil:
-			sublog.Error().Str("request.body", string(c.Request().Body())).Err(err).Msg("internal server error")
+			sublog.Error().Err(err).Msg("internal server error")
 			return c.Status(http.StatusInternalServerError).JSON(fiber.Map{"message": "internal server error"})
 
 		case fiber.StatusBadRequest <= code && code < fiber.StatusInternalServerError:
-			sublog.Warn().Str("request.body", string(c.Request().Body())).Msg("bad request")
+			sublog.Warn().Msg("bad request")
 			return nil
 
 		default:

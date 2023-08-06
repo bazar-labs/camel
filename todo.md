@@ -5,3 +5,6 @@
 - think about error boundraries for txs
 - think about gas limit for txs
 - remove TODOs/FIXMEs
+- lock down itemDefIDToURI based on the ERC-1155 standard on both sides
+- use magiclink to authenticate
+- handle errors like not found

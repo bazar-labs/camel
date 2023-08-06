@@ -26,7 +26,7 @@ func main() {
 		db         = db.New(&cfg.Database)
 		store      = store.New(db)
 		blockchain = blockchain.New(&cfg.Blockchain)
-		service    = service.New(store, blockchain)
+		service    = service.New(&cfg.Service, store, blockchain)
 		api        = api.New(&cfg.API, service)
 	)
 

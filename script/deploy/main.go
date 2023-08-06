@@ -35,6 +35,7 @@ var DEPLOY_ARGS = []DeployArg{
 
 func main() {
 	for _, arg := range DEPLOY_ARGS {
+		arg := arg
 		contract := strings.Join([]string{arg.Path, arg.Name}, ":")
 
 		command := exec.Command("forge", "create",

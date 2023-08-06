@@ -3,6 +3,8 @@ package api
 import (
 	"context"
 	"fmt"
+	"math/big"
+	"mime/multipart"
 
 	"github.com/el-goblino-foundation/turron/internal/config"
 	"github.com/el-goblino-foundation/turron/internal/domain"
@@ -30,6 +32,10 @@ type IService interface {
 
 	// Game Economy
 	DeployGameEconomy(ctx context.Context, gameID uuid.UUID) (domain.GameContractAddresses, error)
+
+	// Inventory Registry
+	GetItemDefinition(ctx context.Context, gameID uuid.UUID, itemDefID *big.Int) (*domain.ItemDefinition, error)
+	CreateItemDefinition(ctx context.Context, gameID uuid.UUID, form *multipart.Form) (*domain.ItemDefinition, error)
 }
 
 func New(cfg *config.API, service IService) *API {
@@ -45,6 +51,8 @@ func New(cfg *config.API, service IService) *API {
 	v1.Get("/games/:id", handler.GetGame)
 	v1.Post("/games", handler.CreateGame)
 	v1.Post("/games/:id/economy", handler.DeployGameEconomy)
+	v1.Get("/games/:id/economy/inventory/registry/:item_def_id", handler.GetItemDefinition)
+	v1.Post("/games/:id/economy/inventory/registry", handler.CreateItemDefinition)
 
 	return &API{cfg, server}
 }

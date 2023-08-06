@@ -4,12 +4,14 @@ import (
 	"context"
 
 	"github.com/el-goblino-foundation/turron/internal/blockchain"
+	"github.com/el-goblino-foundation/turron/internal/config"
 	"github.com/el-goblino-foundation/turron/internal/domain"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/google/uuid"
 )
 
 type Service struct {
+	cfg        *config.Service
 	store      IStore
 	blockchain IBlockchain
 }
@@ -30,6 +32,6 @@ type IBlockchain interface {
 	InventoryRegistry(address common.Address) blockchain.IInventoryRegistry
 }
 
-func New(store IStore, blockchain IBlockchain) *Service {
-	return &Service{store, blockchain}
+func New(cfg *config.Service, store IStore, blockchain IBlockchain) *Service {
+	return &Service{cfg, store, blockchain}
 }

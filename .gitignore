@@ -18,4 +18,6 @@
 .env.prod
 .env
 !.env.test
-png-1mb.png
+.DS_Store
+example.png
+example.json

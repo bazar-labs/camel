@@ -80,6 +80,7 @@ func (c *InventoryRegistry) CreateItemDefinition(itemDefURI string) (*big.Int, e
 	var itemDefID *big.Int
 	eventSignature := parsedABI.Events["ItemDefinitionCreated"].ID
 	for _, log := range receipt.Logs {
+		log := log
 		if log.Topics[0] == eventSignature {
 			itemDefID = log.Topics[1].Big()
 		}
