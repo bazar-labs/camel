@@ -23,7 +23,7 @@ Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/api/v1/games/{{game_id}}/economy/inventory/registry/1
+GET http://localhost:3000/api/v1/games/{{game_id}}/economy/inventory/registry/4
 Content-Type: application/json
 
 

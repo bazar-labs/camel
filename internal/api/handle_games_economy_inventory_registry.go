@@ -8,11 +8,11 @@ import (
 
 func (h *handler) GetItemDefinition(c *fiber.Ctx) error {
 	type params struct {
-		ItemDefID uint `param:"item_def_id"`
+		ItemDefID uint `params:"item_def_id"`
 	}
 
 	var p params
-	if err := c.QueryParser(&p); err != nil {
+	if err := c.ParamsParser(&p); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid query params"})
 	}
 
