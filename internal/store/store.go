@@ -7,7 +7,6 @@ import (
 	"fmt"
 
 	"github.com/el-goblino-foundation/turron/internal/domain"
-	"github.com/google/uuid"
 )
 
 type Store struct {
@@ -18,11 +17,11 @@ func New(db *sql.DB) *Store {
 	return &Store{db}
 }
 
-func (s *Store) ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game, error) {
+func (s *Store) ListGames(ctx context.Context, userID int) ([]domain.Game, error) {
 	query := `
-		SELECT id, name, contract_addresses
+		SELECT id, name
 		FROM games
-		WHERE user_id = $1
+		WHERE user_id = ?
 	`
 
 	rows, err := s.db.QueryContext(ctx, query, userID)
@@ -35,14 +34,8 @@ func (s *Store) ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game,
 	games := make([]domain.Game, 0)
 	for rows.Next() {
 		var g domain.Game
-		var contractAddresses sql.NullString
-		if err := rows.Scan(&g.ID, &g.Name, &contractAddresses); err != nil {
+		if err := rows.Scan(&g.ID, &g.Name); err != nil {
 			return nil, fmt.Errorf("error scanning row: %w", err)
-		}
-		if contractAddresses.Valid {
-			if err := json.Unmarshal([]byte(contractAddresses.String), &g.ContractAddresses); err != nil {
-				return nil, fmt.Errorf("error unmarshalling contract addresses: %w", err)
-			}
 		}
 		games = append(games, g)
 	}
@@ -50,45 +43,44 @@ func (s *Store) ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game,
 	return games, nil
 }
 
-func (s *Store) GetGame(ctx context.Context, userID, gameID uuid.UUID) (*domain.Game, error) {
+func (s *Store) GetGame(ctx context.Context, userID, gameID int) (*domain.Game, error) {
 	query := `
-		SELECT id, name, contract_addresses
+		SELECT id, name
 		FROM games
-		WHERE id = $1 AND user_id = $2
+		WHERE id = ? AND user_id = ?
 	`
 
 	var g domain.Game
-	var contractAddresses sql.NullString
-	if err := s.db.QueryRowContext(ctx, query, gameID, userID).Scan(&g.ID, &g.Name, &contractAddresses); err != nil {
+	if err := s.db.QueryRowContext(ctx, query, gameID, userID).Scan(&g.ID, &g.Name); err != nil {
 		return nil, fmt.Errorf("error querying game: %w", err)
-	}
-	if contractAddresses.Valid {
-		if err := json.Unmarshal([]byte(contractAddresses.String), &g.ContractAddresses); err != nil {
-			return nil, fmt.Errorf("error unmarshalling contract addresses: %w", err)
-		}
 	}
 
 	return &g, nil
 }
 
-func (s *Store) CreateGame(ctx context.Context, userID uuid.UUID, name string) (*domain.Game, error) {
-	query := `
+func (s *Store) CreateGame(ctx context.Context, userID int, name string) (*domain.Game, error) {
+	statment := `
 		INSERT INTO games (user_id, name)
-		VALUES ($1, $2)
-		RETURNING id
+		VALUES (?, ?)
 	`
 
-	var gameID uuid.UUID
-	if err := s.db.QueryRowContext(ctx, query, userID, name).Scan(&gameID); err != nil {
+	res, err := s.db.ExecContext(ctx, statment, userID, name)
+	if err != nil {
 		return nil, fmt.Errorf("error creating game: %w", err)
 	}
 
-	return s.GetGame(ctx, userID, gameID)
+	gameID, err := res.LastInsertId()
+	if err != nil {
+		return nil, fmt.Errorf("error getting last insert id: %w", err)
+	}
+
+	// FIXME
+	return s.GetGame(ctx, userID, int(gameID))
 }
 
 // TODO add userID
 // TODO replace with GetGame?
-func (s *Store) GetGameContractAddresses(ctx context.Context, gameID uuid.UUID) (*domain.GameContractAddresses, error) {
+func (s *Store) GetGameContractAddresses(ctx context.Context, gameID int) (*domain.GameContractAddresses, error) {
 	query := `
 		SELECT contract_addresses
 		FROM games
@@ -110,7 +102,7 @@ func (s *Store) GetGameContractAddresses(ctx context.Context, gameID uuid.UUID) 
 
 // TODO add userID
 // TODO replace with UpdateGame?
-func (s *Store) UpdateGameContractAddresses(ctx context.Context, gameID uuid.UUID, addresses domain.GameContractAddresses) error {
+func (s *Store) UpdateGameContractAddresses(ctx context.Context, gameID int, addresses domain.GameContractAddresses) error {
 	query := `
 		UPDATE games
 		SET contract_addresses = $1

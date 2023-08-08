@@ -7,10 +7,9 @@ import (
 	"mime/multipart"
 
 	"github.com/el-goblino-foundation/turron/internal/domain"
-	"github.com/google/uuid"
 )
 
-func (s *Service) GetItemDefinition(ctx context.Context, gameID uuid.UUID, itemDefID *big.Int) (*domain.ItemDefinition, error) {
+func (s *Service) GetItemDefinition(ctx context.Context, gameID int, itemDefID *big.Int) (*domain.ItemDefinition, error) {
 	item := &domain.ItemDefinition{ID: itemDefID}
 
 	addresses, err := s.store.GetGameContractAddresses(ctx, gameID)
@@ -26,7 +25,7 @@ func (s *Service) GetItemDefinition(ctx context.Context, gameID uuid.UUID, itemD
 	return item, nil
 }
 
-func (s *Service) CreateItemDefinition(ctx context.Context, gameID uuid.UUID, form *multipart.Form) (*domain.ItemDefinition, error) {
+func (s *Service) CreateItemDefinition(ctx context.Context, gameID int, form *multipart.Form) (*domain.ItemDefinition, error) {
 	var err error
 	itemDef := &domain.ItemDefinition{}
 

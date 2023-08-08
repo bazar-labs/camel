@@ -5,10 +5,9 @@ import (
 	"fmt"
 
 	"github.com/el-goblino-foundation/turron/internal/domain"
-	"github.com/google/uuid"
 )
 
-func (s *Service) DeployGameEconomy(ctx context.Context, gameID uuid.UUID) (domain.GameContractAddresses, error) {
+func (s *Service) DeployGameEconomy(ctx context.Context, gameID int) (domain.GameContractAddresses, error) {
 	// TODO add check not to deploy twice
 
 	addresses, err := s.blockchain.Economy().Deploy()

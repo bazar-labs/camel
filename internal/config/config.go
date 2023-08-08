@@ -26,7 +26,7 @@ type API struct {
 }
 
 type Database struct {
-	URL string `env:"DATABASE_URL" env-required:"true"`
+	DSN string `env:"DATABASE_DSN" env-required:"true"`
 }
 
 type Service struct {

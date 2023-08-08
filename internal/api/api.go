@@ -9,7 +9,6 @@ import (
 	"github.com/el-goblino-foundation/turron/internal/config"
 	"github.com/el-goblino-foundation/turron/internal/domain"
 	"github.com/gofiber/fiber/v2"
-	"github.com/google/uuid"
 )
 
 type API struct {
@@ -26,16 +25,16 @@ type middleware struct{}
 
 type IService interface {
 	// Game
-	ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game, error)
-	GetGame(ctx context.Context, userID uuid.UUID, gameID uuid.UUID) (*domain.Game, error)
-	CreateGame(ctx context.Context, userID uuid.UUID, name string) (*domain.Game, error)
+	ListGames(ctx context.Context, userID int) ([]domain.Game, error)
+	GetGame(ctx context.Context, userID int, gameID int) (*domain.Game, error)
+	CreateGame(ctx context.Context, userID int, name string) (*domain.Game, error)
 
 	// Game Economy
-	DeployGameEconomy(ctx context.Context, gameID uuid.UUID) (domain.GameContractAddresses, error)
+	DeployGameEconomy(ctx context.Context, gameID int) (domain.GameContractAddresses, error)
 
 	// Inventory Registry
-	GetItemDefinition(ctx context.Context, gameID uuid.UUID, itemDefID *big.Int) (*domain.ItemDefinition, error)
-	CreateItemDefinition(ctx context.Context, gameID uuid.UUID, form *multipart.Form) (*domain.ItemDefinition, error)
+	GetItemDefinition(ctx context.Context, gameID int, itemDefID *big.Int) (*domain.ItemDefinition, error)
+	CreateItemDefinition(ctx context.Context, gameID int, form *multipart.Form) (*domain.ItemDefinition, error)
 }
 
 func New(cfg *config.API, service IService) *API {

@@ -27,7 +27,7 @@ jobs:
 
       - name: Create a password
         uses: planetscale/create-branch-password-action@v1
-        id: create_branch_password
+        id: create_password
         with:
           org_name: ${{ vars.PLANETSCALE_ORG_NAME }}
           database_name: ${{ vars.PLANETSCALE_DB_NAME }}

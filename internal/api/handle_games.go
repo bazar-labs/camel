@@ -4,11 +4,10 @@ import (
 	"fmt"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/google/uuid"
 )
 
-var userID = uuid.MustParse("c1914084-f4c8-4d38-a1f1-2836cab7bdd5")
-var gameID = uuid.MustParse("3918ba29-75dd-40e9-aa5a-35d83ee75d40")
+var userID = 1
+var gameID = 1
 
 func (h *handler) ListGames(c *fiber.Ctx) error {
 	games, err := h.service.ListGames(c.Context(), userID)
