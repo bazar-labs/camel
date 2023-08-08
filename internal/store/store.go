@@ -17,7 +17,7 @@ func New(db *sql.DB) *Store {
 	return &Store{db}
 }
 
-func (s *Store) ListGames(ctx context.Context, userID int) ([]domain.Game, error) {
+func (s *Store) ListGame(ctx context.Context, userID int64) ([]domain.Game, error) {
 	query := `
 		SELECT id, name
 		FROM games
@@ -30,35 +30,34 @@ func (s *Store) ListGames(ctx context.Context, userID int) ([]domain.Game, error
 	}
 	defer rows.Close()
 
-	// TODO CHECK
-	games := make([]domain.Game, 0)
+	gg := make([]domain.Game, 0)
 	for rows.Next() {
 		var g domain.Game
 		if err := rows.Scan(&g.ID, &g.Name); err != nil {
 			return nil, fmt.Errorf("error scanning row: %w", err)
 		}
-		games = append(games, g)
+		gg = append(gg, g)
 	}
 
-	return games, nil
+	return gg, nil
 }
 
-func (s *Store) GetGame(ctx context.Context, userID, gameID int) (*domain.Game, error) {
+func (s *Store) GetGame(ctx context.Context, userID, gameID int64) (*domain.Game, error) {
 	query := `
 		SELECT id, name
 		FROM games
-		WHERE id = ? AND user_id = ?
+		WHERE user_id = ? AND id = ?
 	`
 
 	var g domain.Game
-	if err := s.db.QueryRowContext(ctx, query, gameID, userID).Scan(&g.ID, &g.Name); err != nil {
+	if err := s.db.QueryRowContext(ctx, query, userID, gameID).Scan(&g.ID, &g.Name); err != nil {
 		return nil, fmt.Errorf("error querying game: %w", err)
 	}
 
 	return &g, nil
 }
 
-func (s *Store) CreateGame(ctx context.Context, userID int, name string) (*domain.Game, error) {
+func (s *Store) CreateGame(ctx context.Context, userID int64, name string) (*domain.Game, error) {
 	statment := `
 		INSERT INTO games (user_id, name)
 		VALUES (?, ?)
@@ -74,50 +73,82 @@ func (s *Store) CreateGame(ctx context.Context, userID int, name string) (*domai
 		return nil, fmt.Errorf("error getting last insert id: %w", err)
 	}
 
-	// FIXME
-	return s.GetGame(ctx, userID, int(gameID))
+	return s.GetGame(ctx, userID, gameID)
 }
 
-// TODO add userID
-// TODO replace with GetGame?
-func (s *Store) GetGameContractAddresses(ctx context.Context, gameID int) (*domain.GameContractAddresses, error) {
+func (s *Store) ListGameEconomy(ctx context.Context, userID, gameID int64) ([]domain.GameEconomy, error) {
 	query := `
-		SELECT contract_addresses
-		FROM games
-		WHERE id = $1
+		SELECT ge.id, ge.game_id, ge.chain_network_id, ge.contract_addresses
+		FROM game_economies AS ge
+		INNER JOIN games AS g ON ge.game_id = g.id
+		WHERE g.user_id = ? AND g.id = ?
 	`
 
-	var contractAddresses json.RawMessage
-	if err := s.db.QueryRowContext(ctx, query, gameID).Scan(&contractAddresses); err != nil {
-		return nil, fmt.Errorf("error querying game: %w", err)
+	rows, err := s.db.QueryContext(ctx, query, userID, gameID)
+	if err != nil {
+		return nil, fmt.Errorf("error querying game economies: %w", err)
+	}
+	defer rows.Close()
+
+	gg := make([]domain.GameEconomy, 0)
+	for rows.Next() {
+		var g domain.GameEconomy
+		var addresses json.RawMessage
+		if err := rows.Scan(&g.ID, &g.GameID, &g.ChainNetworkID, &addresses); err != nil {
+			return nil, fmt.Errorf("error scanning row: %w", err)
+		}
+		if err := json.Unmarshal(addresses, &g.ContractAddresses); err != nil {
+			return nil, fmt.Errorf("error unmarshaling contract addresses: %w", err)
+		}
+		gg = append(gg, g)
 	}
 
-	var ca domain.GameContractAddresses
-	if err := json.Unmarshal(contractAddresses, &ca); err != nil {
-		return nil, fmt.Errorf("error unmarshalling contract addresses: %w", err)
-	}
-
-	return &ca, nil
+	return gg, nil
 }
 
-// TODO add userID
-// TODO replace with UpdateGame?
-func (s *Store) UpdateGameContractAddresses(ctx context.Context, gameID int, addresses domain.GameContractAddresses) error {
+func (s *Store) GetGameEconomy(ctx context.Context, userID, gameID, economyID int64) (*domain.GameEconomy, error) {
 	query := `
-		UPDATE games
-		SET contract_addresses = $1
-		WHERE id = $2
+		SELECT ge.id, ge.game_id, ge.chain_network_id, ge.contract_addresses
+		FROM game_economies AS ge
+		INNER JOIN games AS g ON ge.game_id = g.id
+		WHERE g.user_id = ? AND g.id = ? AND ge.id = ?
 	`
 
-	contractAddresses, err := json.Marshal(addresses)
-	if err != nil {
-		return fmt.Errorf("error marshalling contract addresses: %w", err)
+	var g domain.GameEconomy
+	var addresses json.RawMessage
+	if err := s.db.QueryRowContext(ctx, query, userID, gameID, economyID).Scan(&g.ID, &g.GameID, &g.ChainNetworkID, &addresses); err != nil {
+		return nil, fmt.Errorf("error querying game economy: %w", err)
 	}
 
-	_, err = s.db.ExecContext(ctx, query, contractAddresses, gameID)
-	if err != nil {
-		return fmt.Errorf("error updating game: %w", err)
+	if err := json.Unmarshal(addresses, &g.ContractAddresses); err != nil {
+		return nil, fmt.Errorf("error unmarshaling addresses: %w", err)
 	}
 
-	return nil
+	return &g, nil
+}
+
+func (s *Store) CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetworkID domain.ChainNetworkID, addresses domain.GameEconomyContractAddresses) (*domain.GameEconomy, error) {
+	// TODO check game exists and belongs to user
+
+	statment := `
+		INSERT INTO game_economies (game_id, chain_network_id, contract_addresses)
+		VALUES (?, ?, ?)
+	`
+
+	aa, err := json.Marshal(addresses)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling addresses: %w", err)
+	}
+
+	res, err := s.db.ExecContext(ctx, statment, gameID, chainNetworkID, aa)
+	if err != nil {
+		return nil, fmt.Errorf("error creating game economy: %w", err)
+	}
+
+	economyID, err := res.LastInsertId()
+	if err != nil {
+		return nil, fmt.Errorf("error getting last insert id: %w", err)
+	}
+
+	return s.GetGameEconomy(ctx, userID, gameID, economyID)
 }

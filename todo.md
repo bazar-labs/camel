@@ -8,3 +8,5 @@
 - lock down itemDefIDToURI based on the ERC-1155 standard on both sides
 - use magiclink to authenticate
 - handle errors like not found
+- use nanoid instead of bigint id
+- check that factory+master contracts exists on startup

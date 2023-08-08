@@ -17,13 +17,14 @@ type Service struct {
 
 type IStore interface {
 	// Game
-	ListGames(ctx context.Context, userID int) ([]domain.Game, error)
-	GetGame(ctx context.Context, userID int, gameID int) (*domain.Game, error)
-	CreateGame(ctx context.Context, userID int, name string) (*domain.Game, error)
+	ListGame(ctx context.Context, userID int64) ([]domain.Game, error)
+	GetGame(ctx context.Context, userID int64, gameID int64) (*domain.Game, error)
+	CreateGame(ctx context.Context, userID int64, name string) (*domain.Game, error)
 
-	// Game Contract Addresses
-	GetGameContractAddresses(ctx context.Context, gameID int) (*domain.GameContractAddresses, error)
-	UpdateGameContractAddresses(ctx context.Context, gameID int, addresses domain.GameContractAddresses) error
+	// Game Economy
+	ListGameEconomy(ctx context.Context, userID, gameID int64) ([]domain.GameEconomy, error)
+	GetGameEconomy(ctx context.Context, userID, gameID, economyID int64) (*domain.GameEconomy, error)
+	CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetworkID domain.ChainNetworkID, addresses domain.GameEconomyContractAddresses) (*domain.GameEconomy, error)
 }
 
 type IBlockchain interface {

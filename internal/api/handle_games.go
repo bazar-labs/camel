@@ -6,11 +6,12 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-var userID = 1
-var gameID = 1
+var userID int64 = 1
+var gameID int64 = 1
+var economyID int64 = 1
 
-func (h *handler) ListGames(c *fiber.Ctx) error {
-	games, err := h.service.ListGames(c.Context(), userID)
+func (h *handler) ListGame(c *fiber.Ctx) error {
+	games, err := h.service.ListGame(c.Context(), userID)
 	if err != nil {
 		return fmt.Errorf("failed to list games: %w", err)
 	}
