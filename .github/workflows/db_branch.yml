@@ -1,5 +1,5 @@
 name: Create a DB branch
-on: [create, workflow_dispatch]
+on: create
 
 jobs:
   create_a_branch:
