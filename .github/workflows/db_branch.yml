@@ -17,8 +17,8 @@ jobs:
         uses: planetscale/create-branch-action@v1
         id: create_branch
         with:
-          org_name: ${{ env.PLANETSCALE_ORG_NAME }}}
-          database_name: ${{ env.PLANETSCALE_DB_NAME }}
+          org_name: ${{ var.PLANETSCALE_ORG_NAME }}}
+          database_name: ${{ var.PLANETSCALE_DB_NAME }}
           branch_name: ${{ steps.extract_branch.outputs.branch }}
           from: master
         env:
@@ -29,8 +29,8 @@ jobs:
         uses: planetscale/create-branch-password-action@v1
         id: create_branch_password
         with:
-          org_name: ${{ env.PLANETSCALE_ORG_NAME }}}
-          database_name: ${{ env.PLANETSCALE_DB_NAME }}
+          org_name: ${{ var.PLANETSCALE_ORG_NAME }}}
+          database_name: ${{ var.PLANETSCALE_DB_NAME }}
           branch_name: ${{ steps.extract_branch.outputs.branch }}
           name: 'pass_${{ steps.extract_branch.outputs.branch }}'
         env:
