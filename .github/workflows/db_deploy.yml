@@ -15,7 +15,7 @@ jobs:
         uses: planetscale/create-deploy-request-action@v1
         id: create_deploy_request
         with:
-          org_name: ${{ vars.PLANETSCALE_ORG_NAME }}}
+          org_name: ${{ vars.PLANETSCALE_ORG_NAME }}
           database_name: ${{ vars.PLANETSCALE_DB_NAME }}
           branch_name: ${{ github.event.pull_request.head.ref }}
         env:
@@ -25,7 +25,7 @@ jobs:
       - name: Deploy a deploy request
         uses: planetscale/deploy-deploy-request-action@v1
         with:
-          org_name: ${{ vars.PLANETSCALE_ORG_NAME }}}
+          org_name: ${{ vars.PLANETSCALE_ORG_NAME }}
           database_name: ${{ vars.PLANETSCALE_DB_NAME }}
           number: ${{ steps.create_deploy_request.outputs.number }}
           wait: true
