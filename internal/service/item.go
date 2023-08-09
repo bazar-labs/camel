@@ -6,7 +6,7 @@ import (
 	"math/big"
 	"mime/multipart"
 
-	"github.com/el-goblino-foundation/turron/internal/domain"
+	"github.com/bazar-labs/turron/internal/domain"
 )
 
 func (s *Service) ListItem(ctx context.Context, userID, gameID, economyID int64) ([]domain.Item, error) {

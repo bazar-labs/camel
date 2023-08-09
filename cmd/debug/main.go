@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/el-goblino-foundation/turron/internal/blockchain"
-	"github.com/el-goblino-foundation/turron/internal/config"
+	"github.com/bazar-labs/turron/internal/blockchain"
+	"github.com/bazar-labs/turron/internal/config"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )

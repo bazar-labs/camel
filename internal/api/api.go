@@ -6,8 +6,8 @@ import (
 	"math/big"
 	"mime/multipart"
 
-	"github.com/el-goblino-foundation/turron/internal/config"
-	"github.com/el-goblino-foundation/turron/internal/domain"
+	"github.com/bazar-labs/turron/internal/config"
+	"github.com/bazar-labs/turron/internal/domain"
 	"github.com/gofiber/fiber/v2"
 )
 

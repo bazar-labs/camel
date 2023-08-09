@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 
-	"github.com/el-goblino-foundation/turron/internal/blockchain"
-	"github.com/el-goblino-foundation/turron/internal/config"
-	"github.com/el-goblino-foundation/turron/internal/domain"
+	"github.com/bazar-labs/turron/internal/blockchain"
+	"github.com/bazar-labs/turron/internal/config"
+	"github.com/bazar-labs/turron/internal/domain"
 	"github.com/ethereum/go-ethereum/common"
 )
 

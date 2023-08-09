@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/el-goblino-foundation/turron/internal/domain"
+	"github.com/bazar-labs/turron/internal/domain"
 )
 
 func (s *Service) ListGame(ctx context.Context, userID int64) ([]domain.Game, error) {

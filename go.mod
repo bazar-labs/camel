@@ -1,4 +1,4 @@
-module github.com/el-goblino-foundation/turron
+module github.com/bazar-labs/turron
 
 go 1.20
 

@@ -3,7 +3,7 @@ package api
 import (
 	"fmt"
 
-	"github.com/el-goblino-foundation/turron/internal/domain"
+	"github.com/bazar-labs/turron/internal/domain"
 	"github.com/gofiber/fiber/v2"
 )
 
