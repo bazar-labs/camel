@@ -17,10 +17,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Start services
-        run: |
-          docker-compose -f docker-compose.yaml up -d
-
       - name: Download dependencies
         run: |
           go mod download

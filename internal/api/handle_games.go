@@ -3,15 +3,17 @@ package api
 import (
 	"fmt"
 
+	"github.com/bazar-labs/turron/internal/domain"
 	"github.com/gofiber/fiber/v2"
-	"github.com/google/uuid"
 )
 
-var userID = uuid.MustParse("c1914084-f4c8-4d38-a1f1-2836cab7bdd5")
-var gameID = uuid.MustParse("3918ba29-75dd-40e9-aa5a-35d83ee75d40")
+var userID int64 = 1
+var gameID int64 = 1
+var economyID int64 = 1
+var chainNetwork = domain.Localhost
 
-func (h *handler) ListGames(c *fiber.Ctx) error {
-	games, err := h.service.ListGames(c.Context(), userID)
+func (h *handler) ListGame(c *fiber.Ctx) error {
+	games, err := h.service.ListGame(c.Context(), userID)
 	if err != nil {
 		return fmt.Errorf("failed to list games: %w", err)
 	}

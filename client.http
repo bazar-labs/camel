@@ -1,34 +1,56 @@
-GET http://localhost:3000/health
-
-@game_id = 3918ba29-75dd-40e9-aa5a-35d83ee75d40
+@game_id = 1
+@economy_id = 1
 
 ###
+# Health Check
+GET http://localhost:3000/health
+
+
+###
+# List Game
 GET http://localhost:3000/api/v1/games
 Content-Type: application/json
 
 
 ###
+# Create Game
 POST http://localhost:3000/api/v1/games
 Content-Type: application/json
 
 
 ###
+# Get Game
 GET http://localhost:3000/api/v1/games/{{game_id}}
 Content-Type: application/json
 
 
 ###
-POST http://localhost:3000/api/v1/games/{{game_id}}/economy
+# List Game Economy
+GET http://localhost:3000/api/v1/games/{{game_id}}/economies
 Content-Type: application/json
 
 
 ###
-GET http://localhost:3000/api/v1/games/{{game_id}}/economy/inventory/registry/4
+# Get Game Economy
+GET http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}
 Content-Type: application/json
 
 
 ###
-POST http://localhost:3000/api/v1/games/{{game_id}}/economy/inventory/registry
+# Create Game Economy
+POST http://localhost:3000/api/v1/games/{{game_id}}/economies
+Content-Type: application/json
+
+
+###
+# List Game Economy Item
+GET http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/items/2
+Content-Type: application/json
+
+
+###
+# Create Game Economy Item
+POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/items
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryWURRmnmgcZ6sC6Sm
 ------WebKitFormBoundaryWURRmnmgcZ6sC6Sm
 Content-Disposition: form-data; name="pinataMetadata"

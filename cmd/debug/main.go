@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/el-goblino-foundation/turron/internal/blockchain"
-	"github.com/el-goblino-foundation/turron/internal/config"
+	"github.com/bazar-labs/turron/internal/blockchain"
+	"github.com/bazar-labs/turron/internal/config"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
@@ -27,13 +27,13 @@ func main() {
 	}
 	fmt.Printf("Economy deployed at: %#v\n", addresses)
 
-	itemDefID, err := blockchain.InventoryRegistry(addresses.InventoryRegistry).CreateItemDefinition("https://example.com/item-def-1")
+	itemDefID, err := blockchain.InventoryRegistry(addresses.InventoryRegistry).CreateItem("https://example.com/item-def-1")
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to create item definition")
 	}
 	fmt.Printf("Item Definition ID: %s\n", itemDefID)
 
-	itemDefURI, err := blockchain.InventoryRegistry(addresses.InventoryRegistry).GetItemDefinition(itemDefID)
+	itemDefURI, err := blockchain.InventoryRegistry(addresses.InventoryRegistry).GetItem(itemDefID)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to get item definition")
 	}

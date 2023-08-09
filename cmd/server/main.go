@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"github.com/el-goblino-foundation/turron/internal/api"
-	"github.com/el-goblino-foundation/turron/internal/blockchain"
-	"github.com/el-goblino-foundation/turron/internal/config"
-	"github.com/el-goblino-foundation/turron/internal/db"
-	"github.com/el-goblino-foundation/turron/internal/service"
-	"github.com/el-goblino-foundation/turron/internal/store"
+	"github.com/bazar-labs/turron/internal/api"
+	"github.com/bazar-labs/turron/internal/blockchain"
+	"github.com/bazar-labs/turron/internal/config"
+	"github.com/bazar-labs/turron/internal/db"
+	"github.com/bazar-labs/turron/internal/service"
+	"github.com/bazar-labs/turron/internal/store"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )

@@ -8,6 +8,7 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+// FIXME doesnt handle native 404
 func (m *middleware) Logger() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		start := time.Now()

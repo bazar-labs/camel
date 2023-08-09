@@ -7,7 +7,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/el-goblino-foundation/turron/contract"
+	"github.com/bazar-labs/turron/contract"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -15,8 +15,8 @@ import (
 )
 
 type IInventoryRegistry interface {
-	GetItemDefinition(itemDefID *big.Int) (string, error)
-	CreateItemDefinition(itemDefURI string) (*big.Int, error)
+	GetItem(itemDefID *big.Int) (string, error)
+	CreateItem(itemDefURI string) (*big.Int, error)
 }
 
 type InventoryRegistry struct {
@@ -29,7 +29,7 @@ func (c *Client) InventoryRegistry(address common.Address) IInventoryRegistry {
 	return &InventoryRegistry{c.client, c.pk, address}
 }
 
-func (c *InventoryRegistry) GetItemDefinition(itemDefID *big.Int) (string, error) {
+func (c *InventoryRegistry) GetItem(itemDefID *big.Int) (string, error) {
 	instance, err := contract.NewInventoryRegistryContract(c.address, c.client)
 	if err != nil {
 		return "", fmt.Errorf("failed to instantiate 'InventoryRegistry' contract: %v", err)
@@ -45,7 +45,7 @@ func (c *InventoryRegistry) GetItemDefinition(itemDefID *big.Int) (string, error
 	return itemDefURI, nil
 }
 
-func (c *InventoryRegistry) CreateItemDefinition(itemDefURI string) (*big.Int, error) {
+func (c *InventoryRegistry) CreateItem(itemDefURI string) (*big.Int, error) {
 	instance, err := contract.NewInventoryRegistryContract(c.address, c.client)
 	if err != nil {
 		return nil, fmt.Errorf("failed to instantiate 'InventoryRegistry' contract: %v", err)
@@ -55,11 +55,12 @@ func (c *InventoryRegistry) CreateItemDefinition(itemDefURI string) (*big.Int, e
 	if err != nil {
 		return nil, fmt.Errorf("failed to create authorized transactor: %v", err)
 	}
+	// FIXME
 	auth.GasLimit = uint64(30000000)
 
 	tx, err := instance.CreateItemDefinition(auth, itemDefURI)
 	if err != nil {
-		return nil, fmt.Errorf("failed to create 'CreateItemDefinition' transaction: %w", err)
+		return nil, fmt.Errorf("failed to create 'CreateItem' transaction: %w", err)
 	}
 
 	_, err = bind.WaitMined(context.Background(), c.client, tx)

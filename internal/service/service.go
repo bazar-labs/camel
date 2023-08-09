@@ -3,11 +3,10 @@ package service
 import (
 	"context"
 
-	"github.com/el-goblino-foundation/turron/internal/blockchain"
-	"github.com/el-goblino-foundation/turron/internal/config"
-	"github.com/el-goblino-foundation/turron/internal/domain"
+	"github.com/bazar-labs/turron/internal/blockchain"
+	"github.com/bazar-labs/turron/internal/config"
+	"github.com/bazar-labs/turron/internal/domain"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/google/uuid"
 )
 
 type Service struct {
@@ -18,13 +17,14 @@ type Service struct {
 
 type IStore interface {
 	// Game
-	ListGames(ctx context.Context, userID uuid.UUID) ([]domain.Game, error)
-	GetGame(ctx context.Context, userID uuid.UUID, gameID uuid.UUID) (*domain.Game, error)
-	CreateGame(ctx context.Context, userID uuid.UUID, name string) (*domain.Game, error)
+	ListGame(ctx context.Context, userID int64) ([]domain.Game, error)
+	GetGame(ctx context.Context, userID int64, gameID int64) (*domain.Game, error)
+	CreateGame(ctx context.Context, userID int64, name string) (*domain.Game, error)
 
-	// Game Contract Addresses
-	GetGameContractAddresses(ctx context.Context, gameID uuid.UUID) (*domain.GameContractAddresses, error)
-	UpdateGameContractAddresses(ctx context.Context, gameID uuid.UUID, addresses domain.GameContractAddresses) error
+	// Game Economy
+	ListGameEconomy(ctx context.Context, userID, gameID int64) ([]domain.GameEconomy, error)
+	GetGameEconomy(ctx context.Context, userID, gameID, economyID int64) (*domain.GameEconomy, error)
+	CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetwork domain.ChainNetwork, addresses domain.GameEconomyContractAddresses) (*domain.GameEconomy, error)
 }
 
 type IBlockchain interface {
