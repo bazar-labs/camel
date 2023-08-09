@@ -3,34 +3,32 @@ package api
 import (
 	"fmt"
 
-	"github.com/el-goblino-foundation/turron/internal/domain"
 	"github.com/gofiber/fiber/v2"
 )
 
 func (h *handler) ListGameEconomy(c *fiber.Ctx) error {
-	gameEconomy, err := h.service.ListGameEconomy(c.Context(), userID, gameID)
+	economy, err := h.service.ListGameEconomy(c.Context(), userID, gameID)
 	if err != nil {
 		return fmt.Errorf("failed to list game economy: %w", err)
 	}
 
-	return c.JSON(gameEconomy)
+	return c.JSON(economy)
 }
 
 func (h *handler) GetGameEconomy(c *fiber.Ctx) error {
-	gameEconomy, err := h.service.GetGameEconomy(c.Context(), userID, gameID, economyID)
+	economy, err := h.service.GetGameEconomy(c.Context(), userID, gameID, economyID)
 	if err != nil {
 		return fmt.Errorf("failed to get game economy: %w", err)
 	}
 
-	return c.JSON(gameEconomy)
+	return c.JSON(economy)
 }
 
 func (h *handler) CreateGameEconomy(c *fiber.Ctx) error {
-	// FIXME userID, gameID, domain.Localhost
-	addresses, err := h.service.CreateGameEconomy(c.Context(), userID, gameID, domain.Localhost)
+	economy, err := h.service.CreateGameEconomy(c.Context(), userID, gameID, chainNetwork)
 	if err != nil {
-		return fmt.Errorf("failed to deploy game economy: %w", err)
+		return fmt.Errorf("failed to create game economy: %w", err)
 	}
 
-	return c.JSON(addresses)
+	return c.JSON(economy)
 }

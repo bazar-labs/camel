@@ -3,12 +3,14 @@ package api
 import (
 	"fmt"
 
+	"github.com/el-goblino-foundation/turron/internal/domain"
 	"github.com/gofiber/fiber/v2"
 )
 
 var userID int64 = 1
 var gameID int64 = 1
 var economyID int64 = 1
+var chainNetwork = domain.Localhost
 
 func (h *handler) ListGame(c *fiber.Ctx) error {
 	games, err := h.service.ListGame(c.Context(), userID)

@@ -16,7 +16,7 @@ func (s *Service) GetGameEconomy(ctx context.Context, userID, gameID, economyID 
 	return s.store.GetGameEconomy(ctx, userID, gameID, economyID)
 }
 
-func (s *Service) CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetworkID domain.ChainNetworkID) (*domain.GameEconomy, error) {
+func (s *Service) CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetwork domain.ChainNetwork) (*domain.GameEconomy, error) {
 	// TODO add check not to deploy twice
 
 	addresses, err := s.blockchain.Economy().Deploy()
@@ -24,7 +24,7 @@ func (s *Service) CreateGameEconomy(ctx context.Context, userID, gameID int64, c
 		return nil, fmt.Errorf("failed to deploy game economy: %v", err)
 	}
 
-	economy, err := s.store.CreateGameEconomy(ctx, userID, gameID, chainNetworkID, addresses)
+	economy, err := s.store.CreateGameEconomy(ctx, userID, gameID, chainNetwork, addresses)
 	if err != nil {
 		return nil, fmt.Errorf("failed to set game contract addresses: %v", err)
 	}

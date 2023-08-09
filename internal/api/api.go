@@ -32,7 +32,7 @@ type IService interface {
 	// Game Economy
 	ListGameEconomy(ctx context.Context, userID, gameID int64) ([]domain.GameEconomy, error)
 	GetGameEconomy(ctx context.Context, userID, gameID, economyID int64) (*domain.GameEconomy, error)
-	CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetworkID domain.ChainNetworkID) (*domain.GameEconomy, error)
+	CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetwork domain.ChainNetwork) (*domain.GameEconomy, error)
 
 	// Game Economy Item
 	ListItem(ctx context.Context, userID, gameID, economyID int64) ([]domain.Item, error)

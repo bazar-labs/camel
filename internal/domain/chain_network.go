@@ -1,12 +1,11 @@
 package domain
 
-type ChainNetworkID int
+type ChainNetwork string
 
-// TODO think about this being int instead of string
 const (
-	Localhost ChainNetworkID = iota
-	EthereumMainnet
-	EthereumGoerli
-	PolygonMainnet
-	PolygonMumbai
+	Localhost       ChainNetwork = "localhost"
+	EthereumMainnet ChainNetwork = "ethereum_mainnet"
+	EthereumGoerli  ChainNetwork = "ethereum_goerli"
+	PolygonMainnet  ChainNetwork = "polygon_mainnet"
+	PolygonMumbai   ChainNetwork = "polygon_mumbai"
 )

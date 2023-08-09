@@ -78,7 +78,7 @@ func (s *Store) CreateGame(ctx context.Context, userID int64, name string) (*dom
 
 func (s *Store) ListGameEconomy(ctx context.Context, userID, gameID int64) ([]domain.GameEconomy, error) {
 	query := `
-		SELECT ge.id, ge.game_id, ge.chain_network_id, ge.contract_addresses
+		SELECT ge.id, ge.game_id, ge.chain_network, ge.contract_addresses
 		FROM game_economies AS ge
 		INNER JOIN games AS g ON ge.game_id = g.id
 		WHERE g.user_id = ? AND g.id = ?
@@ -94,7 +94,7 @@ func (s *Store) ListGameEconomy(ctx context.Context, userID, gameID int64) ([]do
 	for rows.Next() {
 		var g domain.GameEconomy
 		var addresses json.RawMessage
-		if err := rows.Scan(&g.ID, &g.GameID, &g.ChainNetworkID, &addresses); err != nil {
+		if err := rows.Scan(&g.ID, &g.GameID, &g.ChainNetwork, &addresses); err != nil {
 			return nil, fmt.Errorf("error scanning row: %w", err)
 		}
 		if err := json.Unmarshal(addresses, &g.ContractAddresses); err != nil {
@@ -108,7 +108,7 @@ func (s *Store) ListGameEconomy(ctx context.Context, userID, gameID int64) ([]do
 
 func (s *Store) GetGameEconomy(ctx context.Context, userID, gameID, economyID int64) (*domain.GameEconomy, error) {
 	query := `
-		SELECT ge.id, ge.game_id, ge.chain_network_id, ge.contract_addresses
+		SELECT ge.id, ge.game_id, ge.chain_network, ge.contract_addresses
 		FROM game_economies AS ge
 		INNER JOIN games AS g ON ge.game_id = g.id
 		WHERE g.user_id = ? AND g.id = ? AND ge.id = ?
@@ -116,7 +116,7 @@ func (s *Store) GetGameEconomy(ctx context.Context, userID, gameID, economyID in
 
 	var g domain.GameEconomy
 	var addresses json.RawMessage
-	if err := s.db.QueryRowContext(ctx, query, userID, gameID, economyID).Scan(&g.ID, &g.GameID, &g.ChainNetworkID, &addresses); err != nil {
+	if err := s.db.QueryRowContext(ctx, query, userID, gameID, economyID).Scan(&g.ID, &g.GameID, &g.ChainNetwork, &addresses); err != nil {
 		return nil, fmt.Errorf("error querying game economy: %w", err)
 	}
 
@@ -127,11 +127,11 @@ func (s *Store) GetGameEconomy(ctx context.Context, userID, gameID, economyID in
 	return &g, nil
 }
 
-func (s *Store) CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetworkID domain.ChainNetworkID, addresses domain.GameEconomyContractAddresses) (*domain.GameEconomy, error) {
+func (s *Store) CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetwork domain.ChainNetwork, addresses domain.GameEconomyContractAddresses) (*domain.GameEconomy, error) {
 	// TODO check game exists and belongs to user
 
 	statment := `
-		INSERT INTO game_economies (game_id, chain_network_id, contract_addresses)
+		INSERT INTO game_economies (game_id, chain_network, contract_addresses)
 		VALUES (?, ?, ?)
 	`
 
@@ -140,7 +140,7 @@ func (s *Store) CreateGameEconomy(ctx context.Context, userID, gameID int64, cha
 		return nil, fmt.Errorf("error marshaling addresses: %w", err)
 	}
 
-	res, err := s.db.ExecContext(ctx, statment, gameID, chainNetworkID, aa)
+	res, err := s.db.ExecContext(ctx, statment, gameID, chainNetwork, aa)
 	if err != nil {
 		return nil, fmt.Errorf("error creating game economy: %w", err)
 	}
