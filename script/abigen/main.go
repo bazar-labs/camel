@@ -12,7 +12,12 @@ import (
 const OUT_DIR = "contract"
 const TEMP_DIR = "temp"
 
-var NAMES = []string{"InventoryRegistry", "BoringFactory"}
+var NAMES = []string{
+	"BoringFactory",
+	"InventoryRegistry",
+	"InventoryController",
+	"PurchaseItemEth",
+}
 
 type contract struct {
 	ABI []interface{} `json:"abi"`
