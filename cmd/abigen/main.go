@@ -12,7 +12,7 @@ import (
 const OUT_DIR = "contract"
 const TEMP_DIR = "temp"
 
-var NAMES = []string{
+var CONTRACTS_NAMES = []string{
 	"BoringFactory",
 	"InventoryRegistry",
 	"InventoryController",
@@ -29,7 +29,7 @@ func main() {
 
 	cleandir(OUT_DIR)
 
-	for _, name := range NAMES {
+	for _, name := range CONTRACTS_NAMES {
 		name := name
 		file, err := os.ReadFile("./protocol/out/" + name + ".sol/" + name + ".json")
 		if err != nil {
