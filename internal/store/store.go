@@ -152,3 +152,23 @@ func (s *Store) CreateGameEconomy(ctx context.Context, userID, gameID int64, cha
 
 	return s.GetGameEconomy(ctx, userID, gameID, economyID)
 }
+
+func (s *Store) GetMasterContracts(ctx context.Context, chainNetwork domain.ChainNetwork) (*domain.MasterContracts, error) {
+	query := `
+		SELECT contract_addresses
+		FROM master_contracts
+		WHERE chain_network = ?
+	`
+
+	var mc domain.MasterContracts
+	var addresses json.RawMessage
+	if err := s.db.QueryRowContext(ctx, query, chainNetwork).Scan(&addresses); err != nil {
+		return nil, fmt.Errorf("error querying master contracts: %w", err)
+	}
+
+	if err := json.Unmarshal(addresses, &mc); err != nil {
+		return nil, fmt.Errorf("error unmarshaling addresses: %w", err)
+	}
+
+	return &mc, nil
+}

@@ -3,7 +3,6 @@ package config
 import (
 	"strings"
 
-	"github.com/ethereum/go-ethereum/common"
 	"github.com/ilyakaznacheev/cleanenv"
 	"github.com/joho/godotenv"
 	"github.com/rs/zerolog/log"
@@ -38,14 +37,8 @@ type Pinata struct {
 }
 
 type Blockchain struct {
-	URL                     string `env:"BLOCKCHAIN_URL" env-required:"true"`
-	PrivateKey              string `env:"BLOCKCHAIN_PRIVATE_KEY" env-required:"true"`
-	MasterContractAddresses MasterContractAddresses
-}
-
-type MasterContractAddresses struct {
-	BoringFactory     common.Address `env:"BLOCKCHAIN_MASTER_CONTRACT_ADDRESSES_BORING_FACTORY" env-required:"true"`
-	InventoryRegistry common.Address `env:"BLOCKCHAIN_MASTER_CONTRACT_ADDRESSES_INVENTORY_REGISTRY" env-required:"true"`
+	URL        string `env:"BLOCKCHAIN_URL" env-required:"true"`
+	PrivateKey string `env:"BLOCKCHAIN_PRIVATE_KEY" env-required:"true"`
 }
 
 func Load(paths ...string) *Config {

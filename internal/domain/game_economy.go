@@ -10,5 +10,7 @@ type GameEconomy struct {
 }
 
 type GameEconomyContractAddresses struct {
-	InventoryRegistry common.Address `json:"inventory_registry"`
+	InventoryRegistry    common.Address `json:"inventory_registry"`
+	InventoryController  common.Address `json:"inventory_controller"`
+	BehaviorItemPurchase common.Address `json:"behavior_item_purchase"`
 }

@@ -25,6 +25,9 @@ type IStore interface {
 	ListGameEconomy(ctx context.Context, userID, gameID int64) ([]domain.GameEconomy, error)
 	GetGameEconomy(ctx context.Context, userID, gameID, economyID int64) (*domain.GameEconomy, error)
 	CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetwork domain.ChainNetwork, addresses domain.GameEconomyContractAddresses) (*domain.GameEconomy, error)
+
+	// Master Contracts
+	GetMasterContracts(ctx context.Context, chainNetwork domain.ChainNetwork) (*domain.MasterContracts, error)
 }
 
 type IBlockchain interface {

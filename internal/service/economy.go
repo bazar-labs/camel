@@ -17,9 +17,12 @@ func (s *Service) GetGameEconomy(ctx context.Context, userID, gameID, economyID 
 }
 
 func (s *Service) CreateGameEconomy(ctx context.Context, userID, gameID int64, chainNetwork domain.ChainNetwork) (*domain.GameEconomy, error) {
-	// TODO add check not to deploy twice
+	mc, err := s.store.GetMasterContracts(ctx, chainNetwork)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get master contracts: %v", err)
+	}
 
-	addresses, err := s.blockchain.Economy().Deploy()
+	addresses, err := s.blockchain.Economy().Deploy(mc)
 	if err != nil {
 		return nil, fmt.Errorf("failed to deploy game economy: %v", err)
 	}

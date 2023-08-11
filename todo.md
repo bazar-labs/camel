@@ -10,9 +10,3 @@
 - handle errors like not found
 - use nanoid instead of bigint id
 - check that factory+master contracts exists on startup
-
-1. abigen new contracts
-2. deploy new contracts
-3. add them to a table? master_contracts
-4. update logic to deploy all
-5. add enable/disable logic
