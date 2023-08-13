@@ -10,3 +10,6 @@
 - handle errors like not found
 - use nanoid instead of bigint id
 - check that factory+master contracts exists on startup
+- add requestid (Clients may provide a unique identifier for a request to perform at most once execution. When a requestid is resubmitted, it will not cause the work to be performed again; the response message will be the current state of items affected by the original successful execution.)
+- input validation
+- clean up contants and interfaces across modules and repos

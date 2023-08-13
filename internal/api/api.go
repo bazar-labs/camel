@@ -38,6 +38,10 @@ type IService interface {
 	ListItem(ctx context.Context, userID, gameID, economyID int64) ([]domain.Item, error)
 	GetItem(ctx context.Context, userID, gameID, economyID int64, itemDefID *big.Int) (*domain.Item, error)
 	CreateItem(ctx context.Context, userID, gameID, economyID int64, form *multipart.Form) (*domain.Item, error)
+
+	// Game Economy Behavior
+	EnableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error
+	DisableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error
 }
 
 func New(cfg *config.API, service IService) *API {
@@ -72,4 +76,8 @@ func setup(server *fiber.App, handler *handler, middleware *middleware) {
 	v1.Get("/games/:gid/economies/:eid/items", handler.ListItem)
 	v1.Get("/games/:gid/economies/:eid/items/:iid", handler.GetItem)
 	v1.Post("/games/:gid/economies/:eid/items", handler.CreateItem)
+
+	// Game Economy Behavior
+	v1.Post("/games/:gid/economies/:eid/behaviors/:type/enable", handler.EnableBehavior)
+	v1.Post("/games/:gid/economies/:eid/behaviors/:type/disable", handler.DisableBehavior)
 }

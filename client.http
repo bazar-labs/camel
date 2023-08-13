@@ -72,3 +72,14 @@ Content-Type: application/octet-stream
 
 < ./png-1mb.png
 ------WebKitFormBoundaryWURRmnmgcZ6sC6Sm--
+
+###
+# Enable Behavior Purchase Item
+POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behaviors/purchase_item/enable
+Content-Type: application/json
+
+
+###
+# Disable Behavior Purchase Item
+POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behaviors/purchase_item/disable
+Content-Type: application/json

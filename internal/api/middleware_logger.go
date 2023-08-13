@@ -9,6 +9,7 @@ import (
 )
 
 // FIXME doesnt handle native 404
+// FIXME wrong ip
 func (m *middleware) Logger() fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		start := time.Now()
