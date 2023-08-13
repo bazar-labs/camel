@@ -45,6 +45,7 @@ func (s *Service) setBehaviourState(ctx context.Context, userID, gameID, economy
 		return fmt.Errorf("unknown behavior: %s", behavior)
 	}
 
+	// FIXME this can cause update issues if multiple updates are happening at the same time
 	_, err = s.store.UpdateGameEconomyContracts(ctx, userID, gameID, economyID, economy.Contracts)
 	if err != nil {
 		return fmt.Errorf("failed to update game economy: %w", err)
