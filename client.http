@@ -75,11 +75,11 @@ Content-Type: application/octet-stream
 
 ###
 # Enable Behavior Purchase Item
-POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behavior/purchase_item/enable
+POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behaviors/purchase_item/enable
 Content-Type: application/json
 
 
 ###
 # Disable Behavior Purchase Item
-POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behavior/purchase_item/disable
+POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behaviors/purchase_item/disable
 Content-Type: application/json

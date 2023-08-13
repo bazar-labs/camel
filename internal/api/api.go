@@ -78,6 +78,6 @@ func setup(server *fiber.App, handler *handler, middleware *middleware) {
 	v1.Post("/games/:gid/economies/:eid/items", handler.CreateItem)
 
 	// Game Economy Behavior
-	v1.Post("/games/:gid/economies/:eid/behavior/:type/enable", handler.EnableBehavior)
-	v1.Post("/games/:gid/economies/:eid/behavior/:type/disable", handler.DisableBehavior)
+	v1.Post("/games/:gid/economies/:eid/behaviors/:type/enable", handler.EnableBehavior)
+	v1.Post("/games/:gid/economies/:eid/behaviors/:type/disable", handler.DisableBehavior)
 }

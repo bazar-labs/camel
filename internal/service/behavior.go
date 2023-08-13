@@ -5,14 +5,6 @@ import (
 	"fmt"
 )
 
-func (s *Service) EnableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error {
-	return s.setBehaviourState(ctx, userID, gameID, economyID, behavior, true)
-}
-
-func (s *Service) DisableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error {
-	return s.setBehaviourState(ctx, userID, gameID, economyID, behavior, false)
-}
-
 func (s *Service) GetBehaviorState(ctx context.Context, userID, gameID, economyID int64, behavior string) (bool, error) {
 	economy, err := s.store.GetGameEconomy(ctx, userID, gameID, economyID)
 	if err != nil {
@@ -25,6 +17,14 @@ func (s *Service) GetBehaviorState(ctx context.Context, userID, gameID, economyI
 	default:
 		return false, fmt.Errorf("unknown behavior: %s", behavior)
 	}
+}
+
+func (s *Service) EnableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error {
+	return s.setBehaviourState(ctx, userID, gameID, economyID, behavior, true)
+}
+
+func (s *Service) DisableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error {
+	return s.setBehaviourState(ctx, userID, gameID, economyID, behavior, false)
 }
 
 func (s *Service) setBehaviourState(ctx context.Context, userID, gameID, economyID int64, behavior string, state bool) error {
