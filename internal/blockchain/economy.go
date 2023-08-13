@@ -21,7 +21,7 @@ import (
 const CHAIN_ID = 31337
 
 type IEconomy interface {
-	Deploy(*domain.MasterContracts) (domain.GameEconomyContractAddresses, error)
+	Deploy(domain.MasterEconomyContracts) (domain.GameEconomyContracts, error)
 }
 
 type Economy struct {
@@ -39,17 +39,17 @@ func (c *Client) Economy() IEconomy {
 	return &Economy{c.client, c.pk}
 }
 
-func (c *Economy) Deploy(mc *domain.MasterContracts) (domain.GameEconomyContractAddresses, error) {
-	addresses := domain.GameEconomyContractAddresses{}
+func (c *Economy) Deploy(mc domain.MasterEconomyContracts) (domain.GameEconomyContracts, error) {
+	addresses := domain.GameEconomyContracts{}
 
 	instance, err := contract.NewBoringFactoryContract(mc.BoringFactory, c.client)
 	if err != nil {
-		return domain.GameEconomyContractAddresses{}, fmt.Errorf("failed to instantiate a 'BoringFactory' contract: %w", err)
+		return domain.GameEconomyContracts{}, fmt.Errorf("failed to instantiate a 'BoringFactory' contract: %w", err)
 	}
 
 	auth, err := bind.NewKeyedTransactorWithChainID(c.pk, big.NewInt(CHAIN_ID))
 	if err != nil {
-		return domain.GameEconomyContractAddresses{}, fmt.Errorf("failed to create authorized transactor: %v", err)
+		return domain.GameEconomyContracts{}, fmt.Errorf("failed to create authorized transactor: %v", err)
 	}
 	auth.GasLimit = uint64(30000000)
 
@@ -69,12 +69,12 @@ func (c *Economy) Deploy(mc *domain.MasterContracts) (domain.GameEconomyContract
 			),
 		},
 		{
-			Name:    "BehaviorItemPurchase",
-			Address: mc.BehaviorItemPurchase,
+			Name:    "BehaviorPurchaseItem",
+			Address: mc.Behaviors.PurchaseItem.Address,
 			Data: packArgsTo32Bytes(
 				crypto.PubkeyToAddress(c.pk.PublicKey).Bytes(),
-				addresses.InventoryRegistry.Bytes(),
-				addresses.InventoryController.Bytes(),
+				addresses.InventoryRegistry.Address.Bytes(),
+				addresses.InventoryController.Address.Bytes(),
 			),
 		},
 	}
@@ -82,16 +82,16 @@ func (c *Economy) Deploy(mc *domain.MasterContracts) (domain.GameEconomyContract
 	for _, arg := range args {
 		address, err := c.deploy(instance, auth, arg)
 		if err != nil {
-			return domain.GameEconomyContractAddresses{}, err
+			return domain.GameEconomyContracts{}, err
 		}
 
 		switch arg.Name {
 		case "InventoryRegistry":
-			addresses.InventoryRegistry = address
+			addresses.InventoryRegistry.Address = address
 		case "InventoryController":
-			addresses.InventoryController = address
-		case "BehaviorItemPurchase":
-			addresses.BehaviorItemPurchase = address
+			addresses.InventoryController.Address = address
+		case "BehaviorPurchaseItem":
+			addresses.Behaviors.PurchaseItem.Address = address
 		}
 	}
 
