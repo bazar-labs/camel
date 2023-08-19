@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/bazar-labs/turron/internal/domain"
+	"github.com/bazar-labs/camel/internal/domain"
 )
 
 func (s *Service) GetBehaviorState(ctx context.Context, userID, gameID, economyID int64, behavior domain.Behavior) (bool, error) {

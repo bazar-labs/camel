@@ -3,7 +3,7 @@ package db
 import (
 	"database/sql"
 
-	"github.com/bazar-labs/turron/internal/config"
+	"github.com/bazar-labs/camel/internal/config"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/rs/zerolog/log"
 )

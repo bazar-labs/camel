@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"github.com/bazar-labs/turron/internal/api"
-	"github.com/bazar-labs/turron/internal/blockchain"
-	"github.com/bazar-labs/turron/internal/config"
-	"github.com/bazar-labs/turron/internal/db"
-	"github.com/bazar-labs/turron/internal/service"
-	"github.com/bazar-labs/turron/internal/store"
+	"github.com/bazar-labs/camel/internal/api"
+	"github.com/bazar-labs/camel/internal/blockchain"
+	"github.com/bazar-labs/camel/internal/config"
+	"github.com/bazar-labs/camel/internal/db"
+	"github.com/bazar-labs/camel/internal/service"
+	"github.com/bazar-labs/camel/internal/store"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )

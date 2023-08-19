@@ -1,4 +1,4 @@
-module github.com/bazar-labs/turron
+module github.com/bazar-labs/camel
 
 go 1.20
 

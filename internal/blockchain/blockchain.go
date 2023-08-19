@@ -3,7 +3,7 @@ package blockchain
 import (
 	"crypto/ecdsa"
 
-	"github.com/bazar-labs/turron/internal/config"
+	"github.com/bazar-labs/camel/internal/config"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/rs/zerolog/log"
