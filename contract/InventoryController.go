@@ -31,7 +31,7 @@ var (
 
 // InventoryControllerContractMetaData contains all meta data concerning the InventoryControllerContract contract.
 var InventoryControllerContractMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"state\",\"type\":\"bool\"}],\"name\":\"BehaviorSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"executeBehavior\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"init\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIInventoryBehavior\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isInventoryBehavior\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"state\",\"type\":\"bool\"}],\"name\":\"setBehavior\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"}],\"name\":\"BehaviorDisabled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"}],\"name\":\"BehaviorEnabled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"player\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"}],\"name\":\"BehaviorExecuted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"}],\"name\":\"disable\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"}],\"name\":\"enable\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIInventoryBehavior\",\"name\":\"behavior\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"execute\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"init\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIInventoryBehavior\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isBehaviorEnabled\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // InventoryControllerContractABI is the input ABI used to generate the binding from.
@@ -180,12 +180,12 @@ func (_InventoryControllerContract *InventoryControllerContractTransactorRaw) Tr
 	return _InventoryControllerContract.Contract.contract.Transact(opts, method, params...)
 }
 
-// IsInventoryBehavior is a free data retrieval call binding the contract method 0x954fa15e.
+// IsBehaviorEnabled is a free data retrieval call binding the contract method 0x3b8de7e9.
 //
-// Solidity: function isInventoryBehavior(address ) view returns(bool)
-func (_InventoryControllerContract *InventoryControllerContractCaller) IsInventoryBehavior(opts *bind.CallOpts, arg0 common.Address) (bool, error) {
+// Solidity: function isBehaviorEnabled(address ) view returns(bool)
+func (_InventoryControllerContract *InventoryControllerContractCaller) IsBehaviorEnabled(opts *bind.CallOpts, arg0 common.Address) (bool, error) {
 	var out []interface{}
-	err := _InventoryControllerContract.contract.Call(opts, &out, "isInventoryBehavior", arg0)
+	err := _InventoryControllerContract.contract.Call(opts, &out, "isBehaviorEnabled", arg0)
 
 	if err != nil {
 		return *new(bool), err
@@ -197,18 +197,18 @@ func (_InventoryControllerContract *InventoryControllerContractCaller) IsInvento
 
 }
 
-// IsInventoryBehavior is a free data retrieval call binding the contract method 0x954fa15e.
+// IsBehaviorEnabled is a free data retrieval call binding the contract method 0x3b8de7e9.
 //
-// Solidity: function isInventoryBehavior(address ) view returns(bool)
-func (_InventoryControllerContract *InventoryControllerContractSession) IsInventoryBehavior(arg0 common.Address) (bool, error) {
-	return _InventoryControllerContract.Contract.IsInventoryBehavior(&_InventoryControllerContract.CallOpts, arg0)
+// Solidity: function isBehaviorEnabled(address ) view returns(bool)
+func (_InventoryControllerContract *InventoryControllerContractSession) IsBehaviorEnabled(arg0 common.Address) (bool, error) {
+	return _InventoryControllerContract.Contract.IsBehaviorEnabled(&_InventoryControllerContract.CallOpts, arg0)
 }
 
-// IsInventoryBehavior is a free data retrieval call binding the contract method 0x954fa15e.
+// IsBehaviorEnabled is a free data retrieval call binding the contract method 0x3b8de7e9.
 //
-// Solidity: function isInventoryBehavior(address ) view returns(bool)
-func (_InventoryControllerContract *InventoryControllerContractCallerSession) IsInventoryBehavior(arg0 common.Address) (bool, error) {
-	return _InventoryControllerContract.Contract.IsInventoryBehavior(&_InventoryControllerContract.CallOpts, arg0)
+// Solidity: function isBehaviorEnabled(address ) view returns(bool)
+func (_InventoryControllerContract *InventoryControllerContractCallerSession) IsBehaviorEnabled(arg0 common.Address) (bool, error) {
+	return _InventoryControllerContract.Contract.IsBehaviorEnabled(&_InventoryControllerContract.CallOpts, arg0)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -242,25 +242,67 @@ func (_InventoryControllerContract *InventoryControllerContractCallerSession) Ow
 	return _InventoryControllerContract.Contract.Owner(&_InventoryControllerContract.CallOpts)
 }
 
-// ExecuteBehavior is a paid mutator transaction binding the contract method 0xb9171214.
+// Disable is a paid mutator transaction binding the contract method 0xe6c09edf.
 //
-// Solidity: function executeBehavior(address behavior, bytes data) payable returns()
-func (_InventoryControllerContract *InventoryControllerContractTransactor) ExecuteBehavior(opts *bind.TransactOpts, behavior common.Address, data []byte) (*types.Transaction, error) {
-	return _InventoryControllerContract.contract.Transact(opts, "executeBehavior", behavior, data)
+// Solidity: function disable(address behavior) returns()
+func (_InventoryControllerContract *InventoryControllerContractTransactor) Disable(opts *bind.TransactOpts, behavior common.Address) (*types.Transaction, error) {
+	return _InventoryControllerContract.contract.Transact(opts, "disable", behavior)
 }
 
-// ExecuteBehavior is a paid mutator transaction binding the contract method 0xb9171214.
+// Disable is a paid mutator transaction binding the contract method 0xe6c09edf.
 //
-// Solidity: function executeBehavior(address behavior, bytes data) payable returns()
-func (_InventoryControllerContract *InventoryControllerContractSession) ExecuteBehavior(behavior common.Address, data []byte) (*types.Transaction, error) {
-	return _InventoryControllerContract.Contract.ExecuteBehavior(&_InventoryControllerContract.TransactOpts, behavior, data)
+// Solidity: function disable(address behavior) returns()
+func (_InventoryControllerContract *InventoryControllerContractSession) Disable(behavior common.Address) (*types.Transaction, error) {
+	return _InventoryControllerContract.Contract.Disable(&_InventoryControllerContract.TransactOpts, behavior)
 }
 
-// ExecuteBehavior is a paid mutator transaction binding the contract method 0xb9171214.
+// Disable is a paid mutator transaction binding the contract method 0xe6c09edf.
 //
-// Solidity: function executeBehavior(address behavior, bytes data) payable returns()
-func (_InventoryControllerContract *InventoryControllerContractTransactorSession) ExecuteBehavior(behavior common.Address, data []byte) (*types.Transaction, error) {
-	return _InventoryControllerContract.Contract.ExecuteBehavior(&_InventoryControllerContract.TransactOpts, behavior, data)
+// Solidity: function disable(address behavior) returns()
+func (_InventoryControllerContract *InventoryControllerContractTransactorSession) Disable(behavior common.Address) (*types.Transaction, error) {
+	return _InventoryControllerContract.Contract.Disable(&_InventoryControllerContract.TransactOpts, behavior)
+}
+
+// Enable is a paid mutator transaction binding the contract method 0x5bfa1b68.
+//
+// Solidity: function enable(address behavior) returns()
+func (_InventoryControllerContract *InventoryControllerContractTransactor) Enable(opts *bind.TransactOpts, behavior common.Address) (*types.Transaction, error) {
+	return _InventoryControllerContract.contract.Transact(opts, "enable", behavior)
+}
+
+// Enable is a paid mutator transaction binding the contract method 0x5bfa1b68.
+//
+// Solidity: function enable(address behavior) returns()
+func (_InventoryControllerContract *InventoryControllerContractSession) Enable(behavior common.Address) (*types.Transaction, error) {
+	return _InventoryControllerContract.Contract.Enable(&_InventoryControllerContract.TransactOpts, behavior)
+}
+
+// Enable is a paid mutator transaction binding the contract method 0x5bfa1b68.
+//
+// Solidity: function enable(address behavior) returns()
+func (_InventoryControllerContract *InventoryControllerContractTransactorSession) Enable(behavior common.Address) (*types.Transaction, error) {
+	return _InventoryControllerContract.Contract.Enable(&_InventoryControllerContract.TransactOpts, behavior)
+}
+
+// Execute is a paid mutator transaction binding the contract method 0x1cff79cd.
+//
+// Solidity: function execute(address behavior, bytes data) payable returns()
+func (_InventoryControllerContract *InventoryControllerContractTransactor) Execute(opts *bind.TransactOpts, behavior common.Address, data []byte) (*types.Transaction, error) {
+	return _InventoryControllerContract.contract.Transact(opts, "execute", behavior, data)
+}
+
+// Execute is a paid mutator transaction binding the contract method 0x1cff79cd.
+//
+// Solidity: function execute(address behavior, bytes data) payable returns()
+func (_InventoryControllerContract *InventoryControllerContractSession) Execute(behavior common.Address, data []byte) (*types.Transaction, error) {
+	return _InventoryControllerContract.Contract.Execute(&_InventoryControllerContract.TransactOpts, behavior, data)
+}
+
+// Execute is a paid mutator transaction binding the contract method 0x1cff79cd.
+//
+// Solidity: function execute(address behavior, bytes data) payable returns()
+func (_InventoryControllerContract *InventoryControllerContractTransactorSession) Execute(behavior common.Address, data []byte) (*types.Transaction, error) {
+	return _InventoryControllerContract.Contract.Execute(&_InventoryControllerContract.TransactOpts, behavior, data)
 }
 
 // Init is a paid mutator transaction binding the contract method 0x4ddf47d4.
@@ -284,27 +326,6 @@ func (_InventoryControllerContract *InventoryControllerContractTransactorSession
 	return _InventoryControllerContract.Contract.Init(&_InventoryControllerContract.TransactOpts, data)
 }
 
-// SetBehavior is a paid mutator transaction binding the contract method 0x20972057.
-//
-// Solidity: function setBehavior(address behavior, bool state) returns()
-func (_InventoryControllerContract *InventoryControllerContractTransactor) SetBehavior(opts *bind.TransactOpts, behavior common.Address, state bool) (*types.Transaction, error) {
-	return _InventoryControllerContract.contract.Transact(opts, "setBehavior", behavior, state)
-}
-
-// SetBehavior is a paid mutator transaction binding the contract method 0x20972057.
-//
-// Solidity: function setBehavior(address behavior, bool state) returns()
-func (_InventoryControllerContract *InventoryControllerContractSession) SetBehavior(behavior common.Address, state bool) (*types.Transaction, error) {
-	return _InventoryControllerContract.Contract.SetBehavior(&_InventoryControllerContract.TransactOpts, behavior, state)
-}
-
-// SetBehavior is a paid mutator transaction binding the contract method 0x20972057.
-//
-// Solidity: function setBehavior(address behavior, bool state) returns()
-func (_InventoryControllerContract *InventoryControllerContractTransactorSession) SetBehavior(behavior common.Address, state bool) (*types.Transaction, error) {
-	return _InventoryControllerContract.Contract.SetBehavior(&_InventoryControllerContract.TransactOpts, behavior, state)
-}
-
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
@@ -326,9 +347,9 @@ func (_InventoryControllerContract *InventoryControllerContractTransactorSession
 	return _InventoryControllerContract.Contract.TransferOwnership(&_InventoryControllerContract.TransactOpts, newOwner)
 }
 
-// InventoryControllerContractBehaviorSetIterator is returned from FilterBehaviorSet and is used to iterate over the raw logs and unpacked data for BehaviorSet events raised by the InventoryControllerContract contract.
-type InventoryControllerContractBehaviorSetIterator struct {
-	Event *InventoryControllerContractBehaviorSet // Event containing the contract specifics and raw log
+// InventoryControllerContractBehaviorDisabledIterator is returned from FilterBehaviorDisabled and is used to iterate over the raw logs and unpacked data for BehaviorDisabled events raised by the InventoryControllerContract contract.
+type InventoryControllerContractBehaviorDisabledIterator struct {
+	Event *InventoryControllerContractBehaviorDisabled // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -342,7 +363,7 @@ type InventoryControllerContractBehaviorSetIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *InventoryControllerContractBehaviorSetIterator) Next() bool {
+func (it *InventoryControllerContractBehaviorDisabledIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -351,7 +372,7 @@ func (it *InventoryControllerContractBehaviorSetIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(InventoryControllerContractBehaviorSet)
+			it.Event = new(InventoryControllerContractBehaviorDisabled)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -366,7 +387,7 @@ func (it *InventoryControllerContractBehaviorSetIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(InventoryControllerContractBehaviorSet)
+		it.Event = new(InventoryControllerContractBehaviorDisabled)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -382,52 +403,51 @@ func (it *InventoryControllerContractBehaviorSetIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *InventoryControllerContractBehaviorSetIterator) Error() error {
+func (it *InventoryControllerContractBehaviorDisabledIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *InventoryControllerContractBehaviorSetIterator) Close() error {
+func (it *InventoryControllerContractBehaviorDisabledIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// InventoryControllerContractBehaviorSet represents a BehaviorSet event raised by the InventoryControllerContract contract.
-type InventoryControllerContractBehaviorSet struct {
+// InventoryControllerContractBehaviorDisabled represents a BehaviorDisabled event raised by the InventoryControllerContract contract.
+type InventoryControllerContractBehaviorDisabled struct {
 	Behavior common.Address
-	State    bool
 	Raw      types.Log // Blockchain specific contextual infos
 }
 
-// FilterBehaviorSet is a free log retrieval operation binding the contract event 0xf2825cff4cd6de648142d2b2ea52ef834d8de42dd9944868d02b809850e61bf5.
+// FilterBehaviorDisabled is a free log retrieval operation binding the contract event 0xa07647694ba7ba5f05960bccccf719becca5e83ed3e2c1141caae09699d6d1ea.
 //
-// Solidity: event BehaviorSet(address indexed behavior, bool state)
-func (_InventoryControllerContract *InventoryControllerContractFilterer) FilterBehaviorSet(opts *bind.FilterOpts, behavior []common.Address) (*InventoryControllerContractBehaviorSetIterator, error) {
+// Solidity: event BehaviorDisabled(address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) FilterBehaviorDisabled(opts *bind.FilterOpts, behavior []common.Address) (*InventoryControllerContractBehaviorDisabledIterator, error) {
 
 	var behaviorRule []interface{}
 	for _, behaviorItem := range behavior {
 		behaviorRule = append(behaviorRule, behaviorItem)
 	}
 
-	logs, sub, err := _InventoryControllerContract.contract.FilterLogs(opts, "BehaviorSet", behaviorRule)
+	logs, sub, err := _InventoryControllerContract.contract.FilterLogs(opts, "BehaviorDisabled", behaviorRule)
 	if err != nil {
 		return nil, err
 	}
-	return &InventoryControllerContractBehaviorSetIterator{contract: _InventoryControllerContract.contract, event: "BehaviorSet", logs: logs, sub: sub}, nil
+	return &InventoryControllerContractBehaviorDisabledIterator{contract: _InventoryControllerContract.contract, event: "BehaviorDisabled", logs: logs, sub: sub}, nil
 }
 
-// WatchBehaviorSet is a free log subscription operation binding the contract event 0xf2825cff4cd6de648142d2b2ea52ef834d8de42dd9944868d02b809850e61bf5.
+// WatchBehaviorDisabled is a free log subscription operation binding the contract event 0xa07647694ba7ba5f05960bccccf719becca5e83ed3e2c1141caae09699d6d1ea.
 //
-// Solidity: event BehaviorSet(address indexed behavior, bool state)
-func (_InventoryControllerContract *InventoryControllerContractFilterer) WatchBehaviorSet(opts *bind.WatchOpts, sink chan<- *InventoryControllerContractBehaviorSet, behavior []common.Address) (event.Subscription, error) {
+// Solidity: event BehaviorDisabled(address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) WatchBehaviorDisabled(opts *bind.WatchOpts, sink chan<- *InventoryControllerContractBehaviorDisabled, behavior []common.Address) (event.Subscription, error) {
 
 	var behaviorRule []interface{}
 	for _, behaviorItem := range behavior {
 		behaviorRule = append(behaviorRule, behaviorItem)
 	}
 
-	logs, sub, err := _InventoryControllerContract.contract.WatchLogs(opts, "BehaviorSet", behaviorRule)
+	logs, sub, err := _InventoryControllerContract.contract.WatchLogs(opts, "BehaviorDisabled", behaviorRule)
 	if err != nil {
 		return nil, err
 	}
@@ -437,8 +457,8 @@ func (_InventoryControllerContract *InventoryControllerContractFilterer) WatchBe
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(InventoryControllerContractBehaviorSet)
-				if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorSet", log); err != nil {
+				event := new(InventoryControllerContractBehaviorDisabled)
+				if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorDisabled", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -459,12 +479,309 @@ func (_InventoryControllerContract *InventoryControllerContractFilterer) WatchBe
 	}), nil
 }
 
-// ParseBehaviorSet is a log parse operation binding the contract event 0xf2825cff4cd6de648142d2b2ea52ef834d8de42dd9944868d02b809850e61bf5.
+// ParseBehaviorDisabled is a log parse operation binding the contract event 0xa07647694ba7ba5f05960bccccf719becca5e83ed3e2c1141caae09699d6d1ea.
 //
-// Solidity: event BehaviorSet(address indexed behavior, bool state)
-func (_InventoryControllerContract *InventoryControllerContractFilterer) ParseBehaviorSet(log types.Log) (*InventoryControllerContractBehaviorSet, error) {
-	event := new(InventoryControllerContractBehaviorSet)
-	if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorSet", log); err != nil {
+// Solidity: event BehaviorDisabled(address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) ParseBehaviorDisabled(log types.Log) (*InventoryControllerContractBehaviorDisabled, error) {
+	event := new(InventoryControllerContractBehaviorDisabled)
+	if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorDisabled", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// InventoryControllerContractBehaviorEnabledIterator is returned from FilterBehaviorEnabled and is used to iterate over the raw logs and unpacked data for BehaviorEnabled events raised by the InventoryControllerContract contract.
+type InventoryControllerContractBehaviorEnabledIterator struct {
+	Event *InventoryControllerContractBehaviorEnabled // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *InventoryControllerContractBehaviorEnabledIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(InventoryControllerContractBehaviorEnabled)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(InventoryControllerContractBehaviorEnabled)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *InventoryControllerContractBehaviorEnabledIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *InventoryControllerContractBehaviorEnabledIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// InventoryControllerContractBehaviorEnabled represents a BehaviorEnabled event raised by the InventoryControllerContract contract.
+type InventoryControllerContractBehaviorEnabled struct {
+	Behavior common.Address
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterBehaviorEnabled is a free log retrieval operation binding the contract event 0xd174838b436313423cc79586e5a099eeebff3aa3a8b6eac7aa38001ffdbb53c0.
+//
+// Solidity: event BehaviorEnabled(address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) FilterBehaviorEnabled(opts *bind.FilterOpts, behavior []common.Address) (*InventoryControllerContractBehaviorEnabledIterator, error) {
+
+	var behaviorRule []interface{}
+	for _, behaviorItem := range behavior {
+		behaviorRule = append(behaviorRule, behaviorItem)
+	}
+
+	logs, sub, err := _InventoryControllerContract.contract.FilterLogs(opts, "BehaviorEnabled", behaviorRule)
+	if err != nil {
+		return nil, err
+	}
+	return &InventoryControllerContractBehaviorEnabledIterator{contract: _InventoryControllerContract.contract, event: "BehaviorEnabled", logs: logs, sub: sub}, nil
+}
+
+// WatchBehaviorEnabled is a free log subscription operation binding the contract event 0xd174838b436313423cc79586e5a099eeebff3aa3a8b6eac7aa38001ffdbb53c0.
+//
+// Solidity: event BehaviorEnabled(address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) WatchBehaviorEnabled(opts *bind.WatchOpts, sink chan<- *InventoryControllerContractBehaviorEnabled, behavior []common.Address) (event.Subscription, error) {
+
+	var behaviorRule []interface{}
+	for _, behaviorItem := range behavior {
+		behaviorRule = append(behaviorRule, behaviorItem)
+	}
+
+	logs, sub, err := _InventoryControllerContract.contract.WatchLogs(opts, "BehaviorEnabled", behaviorRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(InventoryControllerContractBehaviorEnabled)
+				if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorEnabled", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseBehaviorEnabled is a log parse operation binding the contract event 0xd174838b436313423cc79586e5a099eeebff3aa3a8b6eac7aa38001ffdbb53c0.
+//
+// Solidity: event BehaviorEnabled(address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) ParseBehaviorEnabled(log types.Log) (*InventoryControllerContractBehaviorEnabled, error) {
+	event := new(InventoryControllerContractBehaviorEnabled)
+	if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorEnabled", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// InventoryControllerContractBehaviorExecutedIterator is returned from FilterBehaviorExecuted and is used to iterate over the raw logs and unpacked data for BehaviorExecuted events raised by the InventoryControllerContract contract.
+type InventoryControllerContractBehaviorExecutedIterator struct {
+	Event *InventoryControllerContractBehaviorExecuted // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *InventoryControllerContractBehaviorExecutedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(InventoryControllerContractBehaviorExecuted)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(InventoryControllerContractBehaviorExecuted)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *InventoryControllerContractBehaviorExecutedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *InventoryControllerContractBehaviorExecutedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// InventoryControllerContractBehaviorExecuted represents a BehaviorExecuted event raised by the InventoryControllerContract contract.
+type InventoryControllerContractBehaviorExecuted struct {
+	Player   common.Address
+	Behavior common.Address
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterBehaviorExecuted is a free log retrieval operation binding the contract event 0x753e54cdb967094a69113e0a0910efaed5b855756913dd7119b4830696c9fe7f.
+//
+// Solidity: event BehaviorExecuted(address indexed player, address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) FilterBehaviorExecuted(opts *bind.FilterOpts, player []common.Address, behavior []common.Address) (*InventoryControllerContractBehaviorExecutedIterator, error) {
+
+	var playerRule []interface{}
+	for _, playerItem := range player {
+		playerRule = append(playerRule, playerItem)
+	}
+	var behaviorRule []interface{}
+	for _, behaviorItem := range behavior {
+		behaviorRule = append(behaviorRule, behaviorItem)
+	}
+
+	logs, sub, err := _InventoryControllerContract.contract.FilterLogs(opts, "BehaviorExecuted", playerRule, behaviorRule)
+	if err != nil {
+		return nil, err
+	}
+	return &InventoryControllerContractBehaviorExecutedIterator{contract: _InventoryControllerContract.contract, event: "BehaviorExecuted", logs: logs, sub: sub}, nil
+}
+
+// WatchBehaviorExecuted is a free log subscription operation binding the contract event 0x753e54cdb967094a69113e0a0910efaed5b855756913dd7119b4830696c9fe7f.
+//
+// Solidity: event BehaviorExecuted(address indexed player, address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) WatchBehaviorExecuted(opts *bind.WatchOpts, sink chan<- *InventoryControllerContractBehaviorExecuted, player []common.Address, behavior []common.Address) (event.Subscription, error) {
+
+	var playerRule []interface{}
+	for _, playerItem := range player {
+		playerRule = append(playerRule, playerItem)
+	}
+	var behaviorRule []interface{}
+	for _, behaviorItem := range behavior {
+		behaviorRule = append(behaviorRule, behaviorItem)
+	}
+
+	logs, sub, err := _InventoryControllerContract.contract.WatchLogs(opts, "BehaviorExecuted", playerRule, behaviorRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(InventoryControllerContractBehaviorExecuted)
+				if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorExecuted", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseBehaviorExecuted is a log parse operation binding the contract event 0x753e54cdb967094a69113e0a0910efaed5b855756913dd7119b4830696c9fe7f.
+//
+// Solidity: event BehaviorExecuted(address indexed player, address indexed behavior)
+func (_InventoryControllerContract *InventoryControllerContractFilterer) ParseBehaviorExecuted(log types.Log) (*InventoryControllerContractBehaviorExecuted, error) {
+	event := new(InventoryControllerContractBehaviorExecuted)
+	if err := _InventoryControllerContract.contract.UnpackLog(event, "BehaviorExecuted", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
