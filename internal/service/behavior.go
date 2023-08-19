@@ -13,11 +13,11 @@ func (s *Service) GetBehaviorState(ctx context.Context, userID, gameID, economyI
 		return false, err
 	}
 
-	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController.Address)
+	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController)
 
 	switch behavior {
 	case domain.BehaviorPurchaseItemWithETH:
-		return controller.IsBehaviorEnabled(economy.Contracts.Behaviors.PurchaseItemWithETH.Address)
+		return controller.IsBehaviorEnabled(economy.Contracts.Behaviors.PurchaseItemWithETH)
 	default:
 		return false, fmt.Errorf("unknown behavior: %s", behavior)
 	}
@@ -29,11 +29,11 @@ func (s *Service) EnableBehavior(ctx context.Context, userID, gameID, economyID 
 		return err
 	}
 
-	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController.Address)
+	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController)
 
 	switch behavior {
 	case domain.BehaviorPurchaseItemWithETH:
-		err := controller.EnableBehavior(ctx, economy.Contracts.Behaviors.PurchaseItemWithETH.Address)
+		err := controller.EnableBehavior(ctx, economy.Contracts.Behaviors.PurchaseItemWithETH)
 		if err != nil {
 			return fmt.Errorf("failed to enable behavior: %w", err)
 		}
@@ -51,11 +51,11 @@ func (s *Service) DisableBehavior(ctx context.Context, userID, gameID, economyID
 		return err
 	}
 
-	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController.Address)
+	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController)
 
 	switch behavior {
 	case domain.BehaviorPurchaseItemWithETH:
-		err := controller.DisableBehavior(ctx, economy.Contracts.Behaviors.PurchaseItemWithETH.Address)
+		err := controller.DisableBehavior(ctx, economy.Contracts.Behaviors.PurchaseItemWithETH)
 		if err != nil {
 			return fmt.Errorf("failed to disable behavior: %w", err)
 		}

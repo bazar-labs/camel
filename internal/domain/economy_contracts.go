@@ -10,15 +10,11 @@ type MasterEconomyContracts struct {
 }
 
 type GameEconomyContracts struct {
-	InventoryRegistry   ContractInfo          `json:"inventory_registry"`
-	InventoryController ContractInfo          `json:"inventory_controller"`
+	InventoryRegistry   common.Address        `json:"inventory_registry"`
+	InventoryController common.Address        `json:"inventory_controller"`
 	Behaviors           BehaviourContractInfo `json:"behaviors"`
 }
 
 type BehaviourContractInfo struct {
-	PurchaseItemWithETH ContractInfo `json:"purchase_item_with_eth"`
-}
-
-type ContractInfo struct {
-	Address common.Address `json:"address"`
+	PurchaseItemWithETH common.Address `json:"purchase_item_with_eth"`
 }
