@@ -35,7 +35,7 @@ func (c *InventoryRegistry) GetItem(itemDefID *big.Int) (string, error) {
 		return "", fmt.Errorf("failed to instantiate 'InventoryRegistry' contract: %v", err)
 	}
 
-	itemDefURI, err := instance.ItemDefIDToURI(&bind.CallOpts{}, itemDefID)
+	itemDefURI, err := instance.ItemDefinitionIDToURI(&bind.CallOpts{}, itemDefID)
 	if err != nil {
 		return "", fmt.Errorf("failed to call 'DefinitionIDToURI' function: %w", err)
 	}
@@ -58,7 +58,7 @@ func (c *InventoryRegistry) CreateItem(itemDefURI string) (*big.Int, error) {
 	// FIXME
 	auth.GasLimit = uint64(30000000)
 
-	tx, err := instance.CreateItemDefinition(auth, itemDefURI)
+	tx, err := instance.Create(auth, itemDefURI)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create 'CreateItem' transaction: %w", err)
 	}

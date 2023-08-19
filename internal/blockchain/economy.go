@@ -70,7 +70,7 @@ func (c *Economy) Deploy(mc domain.MasterEconomyContracts) (domain.GameEconomyCo
 		},
 		{
 			Name:    "BehaviorPurchaseItem",
-			Address: mc.Behaviors.PurchaseItem.Address,
+			Address: mc.Behaviors.PurchaseItemWithETH.Address,
 			Data: packArgsTo32Bytes(
 				crypto.PubkeyToAddress(c.pk.PublicKey).Bytes(),
 				addresses.InventoryRegistry.Address.Bytes(),
@@ -91,7 +91,7 @@ func (c *Economy) Deploy(mc domain.MasterEconomyContracts) (domain.GameEconomyCo
 		case "InventoryController":
 			addresses.InventoryController.Address = address
 		case "BehaviorPurchaseItem":
-			addresses.Behaviors.PurchaseItem.Address = address
+			addresses.Behaviors.PurchaseItemWithETH.Address = address
 		}
 	}
 
