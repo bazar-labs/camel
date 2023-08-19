@@ -74,12 +74,12 @@ Content-Type: application/octet-stream
 ------WebKitFormBoundaryWURRmnmgcZ6sC6Sm--
 
 ###
-# Enable Behavior Purchase Item
+# Enable Behavior Purchase Item With ETH
 POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behaviors/purchase_item/enable
 Content-Type: application/json
 
 
 ###
-# Disable Behavior Purchase Item
+# Disable Behavior Purchase Item With ETH
 POST http://localhost:3000/api/v1/games/{{game_id}}/economies/{{economy_id}}/behaviors/purchase_item/disable
 Content-Type: application/json

@@ -40,8 +40,8 @@ type IService interface {
 	CreateItem(ctx context.Context, userID, gameID, economyID int64, form *multipart.Form) (*domain.Item, error)
 
 	// Game Economy Behavior
-	EnableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error
-	DisableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error
+	EnableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior domain.Behavior) error
+	DisableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior domain.Behavior) error
 }
 
 func New(cfg *config.API, service IService) *API {
@@ -81,3 +81,26 @@ func setup(server *fiber.App, handler *handler, middleware *middleware) {
 	v1.Post("/games/:gid/economies/:eid/behaviors/:type/enable", handler.EnableBehavior)
 	v1.Post("/games/:gid/economies/:eid/behaviors/:type/disable", handler.DisableBehavior)
 }
+
+// TODO
+// - make endpoints use body instead of hardcoded params
+// - implement all endpoints
+
+// Game Economy Item
+// GET    /items
+// PATCH  /items/:iid
+// POST   /items/:iid/publish
+// POST   /items/:iid/unpublish
+
+// Game Economy Behavior
+// GET    /behaviors
+// GET    /behaviors/purchase-item-with-eth
+// POST   /behaviors/purchase-item-with-eth/enable
+// POST   /behaviors/purchase-item-with-eth/disable
+// POST   /behaviors/purchase-item-with-eth/build-transaction
+// -
+// GET    /behaviors/purchase-item-with-eth/listings
+// GET    /behaviors/purchase-item-with-eth/listings/:listing
+// POST   /behaviors/purchase-item-with-eth/listings
+// PATCH  /behaviors/purchase-item-with-eth/listings/:listing
+// DELETE /behaviors/purchase-item-with-eth/listings/:listing

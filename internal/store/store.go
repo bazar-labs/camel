@@ -135,12 +135,12 @@ func (s *Store) CreateGameEconomy(ctx context.Context, userID, gameID int64, cha
 		VALUES (?, ?, ?)
 	`
 
-	aa, err := json.Marshal(contracts)
+	data, err := json.Marshal(contracts)
 	if err != nil {
 		return nil, fmt.Errorf("error marshaling contracts: %w", err)
 	}
 
-	res, err := s.db.ExecContext(ctx, statment, gameID, chainNetwork, aa)
+	res, err := s.db.ExecContext(ctx, statment, gameID, chainNetwork, data)
 	if err != nil {
 		return nil, fmt.Errorf("error creating game economy: %w", err)
 	}

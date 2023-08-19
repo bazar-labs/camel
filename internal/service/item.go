@@ -23,7 +23,7 @@ func (s *Service) GetItem(ctx context.Context, userID, gameID, economyID int64, 
 	}
 
 	// TODO not found error
-	item.URI, err = s.blockchain.InventoryRegistry(economy.Contracts.InventoryRegistry.Address).GetItem(item.DefID)
+	item.URI, err = s.blockchain.InventoryRegistry(economy.Contracts.InventoryRegistry).GetItem(item.DefID)
 	if err != nil {
 		return nil, fmt.Errorf("failed to get item definition: %v", err)
 	}
@@ -46,7 +46,7 @@ func (s *Service) CreateItem(ctx context.Context, userID, gameID, economyID int6
 		return nil, fmt.Errorf("failed to get game economy: %v", err)
 	}
 
-	itemdef.DefID, err = s.blockchain.InventoryRegistry(economy.Contracts.InventoryRegistry.Address).CreateItem(itemdef.URI)
+	itemdef.DefID, err = s.blockchain.InventoryRegistry(economy.Contracts.InventoryRegistry).CreateItem(itemdef.URI)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create item definition: %v", err)
 	}

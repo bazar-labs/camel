@@ -3,52 +3,65 @@ package service
 import (
 	"context"
 	"fmt"
+
+	"github.com/bazar-labs/camel/internal/domain"
 )
 
-func (s *Service) GetBehaviorState(ctx context.Context, userID, gameID, economyID int64, behavior string) (bool, error) {
+func (s *Service) GetBehaviorState(ctx context.Context, userID, gameID, economyID int64, behavior domain.Behavior) (bool, error) {
 	economy, err := s.store.GetGameEconomy(ctx, userID, gameID, economyID)
 	if err != nil {
 		return false, err
 	}
 
+	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController)
+
 	switch behavior {
-	case "purchase_item":
-		return s.blockchain.InventoryController(economy.Contracts.InventoryController.Address).IsInventoryBehavior(economy.Contracts.Behaviors.PurchaseItem.Address)
+	case domain.BehaviorPurchaseItemWithETH:
+		return controller.IsBehaviorEnabled(economy.Contracts.Behaviors.PurchaseItemWithETH)
 	default:
 		return false, fmt.Errorf("unknown behavior: %s", behavior)
 	}
 }
 
-func (s *Service) EnableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error {
-	return s.setBehaviourState(ctx, userID, gameID, economyID, behavior, true)
-}
-
-func (s *Service) DisableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior string) error {
-	return s.setBehaviourState(ctx, userID, gameID, economyID, behavior, false)
-}
-
-func (s *Service) setBehaviourState(ctx context.Context, userID, gameID, economyID int64, behavior string, state bool) error {
+func (s *Service) EnableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior domain.Behavior) error {
 	economy, err := s.store.GetGameEconomy(ctx, userID, gameID, economyID)
 	if err != nil {
 		return err
 	}
 
+	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController)
+
 	switch behavior {
-	case "purchase_item":
-		economy.Contracts.Behaviors.PurchaseItem.Enabled = state
-		err := s.blockchain.InventoryController(economy.Contracts.InventoryController.Address).SetBehavior(ctx, economy.Contracts.Behaviors.PurchaseItem.Address, state)
+	case domain.BehaviorPurchaseItemWithETH:
+		err := controller.EnableBehavior(ctx, economy.Contracts.Behaviors.PurchaseItemWithETH)
 		if err != nil {
-			return fmt.Errorf("failed to set purchase_item behavior: %w", err)
+			return fmt.Errorf("failed to enable behavior: %w", err)
 		}
 
 	default:
 		return fmt.Errorf("unknown behavior: %s", behavior)
 	}
 
-	// FIXME this can cause update issues if multiple updates are happening at the same time
-	_, err = s.store.UpdateGameEconomyContracts(ctx, userID, gameID, economyID, economy.Contracts)
+	return nil
+}
+
+func (s *Service) DisableBehavior(ctx context.Context, userID, gameID, economyID int64, behavior domain.Behavior) error {
+	economy, err := s.store.GetGameEconomy(ctx, userID, gameID, economyID)
 	if err != nil {
-		return fmt.Errorf("failed to update game economy: %w", err)
+		return err
+	}
+
+	controller := s.blockchain.InventoryController(economy.Contracts.InventoryController)
+
+	switch behavior {
+	case domain.BehaviorPurchaseItemWithETH:
+		err := controller.DisableBehavior(ctx, economy.Contracts.Behaviors.PurchaseItemWithETH)
+		if err != nil {
+			return fmt.Errorf("failed to disable behavior: %w", err)
+		}
+
+	default:
+		return fmt.Errorf("unknown behavior: %s", behavior)
 	}
 
 	return nil

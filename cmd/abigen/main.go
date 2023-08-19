@@ -16,7 +16,7 @@ var CONTRACTS_NAMES = []string{
 	"BoringFactory",
 	"InventoryRegistry",
 	"InventoryController",
-	"PurchaseItemEth",
+	"PurchaseItemWithETH",
 }
 
 type contract struct {

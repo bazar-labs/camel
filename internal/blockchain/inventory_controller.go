@@ -13,8 +13,9 @@ import (
 )
 
 type IInventoryController interface {
-	IsInventoryBehavior(behavior common.Address) (bool, error)
-	SetBehavior(ctx context.Context, behavior common.Address, state bool) error
+	IsBehaviorEnabled(behavior common.Address) (bool, error)
+	EnableBehavior(ctx context.Context, behavior common.Address) error
+	DisableBehavior(ctx context.Context, behavior common.Address) error
 }
 
 type InventoryController struct {
@@ -27,13 +28,13 @@ func (c *Client) InventoryController(address common.Address) IInventoryControlle
 	return &InventoryController{c.client, c.pk, address}
 }
 
-func (c *InventoryController) IsInventoryBehavior(behavior common.Address) (bool, error) {
+func (c *InventoryController) IsBehaviorEnabled(behavior common.Address) (bool, error) {
 	instance, err := contract.NewInventoryControllerContract(c.address, c.client)
 	if err != nil {
 		return false, fmt.Errorf("failed to instantiate 'InventoryController' contract: %v", err)
 	}
 
-	state, err := instance.IsInventoryBehavior(&bind.CallOpts{}, behavior)
+	state, err := instance.IsBehaviorEnabled(&bind.CallOpts{}, behavior)
 	if err != nil {
 		return false, fmt.Errorf("failed to get behavior state: %v", err)
 	}
@@ -41,7 +42,7 @@ func (c *InventoryController) IsInventoryBehavior(behavior common.Address) (bool
 	return state, nil
 }
 
-func (c *InventoryController) SetBehavior(ctx context.Context, behavior common.Address, state bool) error {
+func (c *InventoryController) EnableBehavior(ctx context.Context, behavior common.Address) error {
 	instance, err := contract.NewInventoryControllerContract(c.address, c.client)
 	if err != nil {
 		return fmt.Errorf("failed to instantiate 'InventoryController' contract: %v", err)
@@ -54,9 +55,35 @@ func (c *InventoryController) SetBehavior(ctx context.Context, behavior common.A
 	// FIXME
 	auth.GasLimit = uint64(30000000)
 
-	tx, err := instance.SetBehavior(auth, behavior, state)
+	tx, err := instance.Enable(auth, behavior)
 	if err != nil {
-		return fmt.Errorf("failed to create 'SetBehavior' transaction: %w", err)
+		return fmt.Errorf("failed to create 'Enable' transaction: %w", err)
+	}
+
+	_, err = bind.WaitMined(ctx, c.client, tx)
+	if err != nil {
+		return fmt.Errorf("failed to wait for contract deployment transaction to be mined: %w", err)
+	}
+
+	return nil
+}
+
+func (c *InventoryController) DisableBehavior(ctx context.Context, behavior common.Address) error {
+	instance, err := contract.NewInventoryControllerContract(c.address, c.client)
+	if err != nil {
+		return fmt.Errorf("failed to instantiate 'InventoryController' contract: %v", err)
+	}
+
+	auth, err := bind.NewKeyedTransactorWithChainID(c.pk, big.NewInt(CHAIN_ID))
+	if err != nil {
+		return fmt.Errorf("failed to create authorized transactor: %v", err)
+	}
+	// FIXME
+	auth.GasLimit = uint64(30000000)
+
+	tx, err := instance.Disable(auth, behavior)
+	if err != nil {
+		return fmt.Errorf("failed to create 'Disable' transaction: %w", err)
 	}
 
 	_, err = bind.WaitMined(ctx, c.client, tx)

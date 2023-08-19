@@ -1,4 +1,4 @@
-- add ctx for blockchain package functions
+- add ctx for blockchain package functions (like: opts \*bind.CallOpts)
 - add api endpoints
 - master contract addresses needs to be stored in the db, not as config
 - think about sync vs async writes to protocol
