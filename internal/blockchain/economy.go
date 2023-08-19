@@ -8,8 +8,8 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/bazar-labs/turron/contract"
-	"github.com/bazar-labs/turron/internal/domain"
+	"github.com/bazar-labs/camel/contract"
+	"github.com/bazar-labs/camel/internal/domain"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"

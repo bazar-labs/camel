@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/bazar-labs/turron/internal/blockchain"
-	"github.com/bazar-labs/turron/internal/config"
-	"github.com/bazar-labs/turron/internal/domain"
+	"github.com/bazar-labs/camel/internal/blockchain"
+	"github.com/bazar-labs/camel/internal/config"
+	"github.com/bazar-labs/camel/internal/domain"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"

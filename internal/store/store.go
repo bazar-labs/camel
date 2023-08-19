@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/bazar-labs/turron/internal/domain"
+	"github.com/bazar-labs/camel/internal/domain"
 )
 
 type Store struct {

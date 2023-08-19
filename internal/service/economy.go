@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/bazar-labs/turron/internal/domain"
+	"github.com/bazar-labs/camel/internal/domain"
 	"github.com/rs/zerolog/log"
 )
 
