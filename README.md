@@ -18,3 +18,7 @@
 
 - Some packages require the docker compose file to run (like the `store` package)
 - Some packages make use of mocks. Install [`moq`](https://github.com/matryer/moq) to generate mocks for interfaces
+
+## Note
+
+- ciaoooooooo

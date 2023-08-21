@@ -94,10 +94,10 @@ func setup(server *fiber.App, handler *handler, middleware *middleware) {
 
 // Game Economy Behavior
 // GET    /behaviors
-// GET    /behaviors/purchase-item-with-eth
-// POST   /behaviors/purchase-item-with-eth/enable
-// POST   /behaviors/purchase-item-with-eth/disable
-// POST   /behaviors/purchase-item-with-eth/build-transaction
+// GET    /behaviors/:type
+// POST   /behaviors/:type/enable
+// POST   /behaviors/:type/disable
+// POST   /behaviors/:type/build-transaction
 // -
 // GET    /behaviors/purchase-item-with-eth/listings
 // GET    /behaviors/purchase-item-with-eth/listings/:listing
