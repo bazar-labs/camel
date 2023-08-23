@@ -17,4 +17,4 @@ jobs:
       - name: Sync API Spec to Readme.com
         uses: readmeio/rdme@7.4.0
         with:
-          rdme: openapi spec.yml --key=${{ secrets.README_API_KEY }} --id=64c2b858c4ebe90067c356fb
+          rdme: openapi spec.yml --key=${{ secrets.README_API_KEY }} --id=64e5fa4406e797005e09ede0
